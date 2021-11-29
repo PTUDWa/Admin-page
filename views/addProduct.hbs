@@ -1,46 +1,79 @@
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4">
+<form class="form-horizontal container" style="max-width: 600px">
+    <fieldset>
+    
+    <!-- Form Name -->
+    <legend>Thêm sản phẩm</legend>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_name">Tên sản phẩm</label>  
+      <div>
+      <input id="product_name" name="name" placeholder="Tên sản phẩm" class="form-control input-md" required="" type="text">
+        
+      </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4">
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_price">Giá sản phẩm</label>  
+      <div>
+      <input id="product_price" name="price" placeholder="Giá sản phẩm" class="form-control input-md" required="" type="number" min="0">
+        
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_summary">Tóm tắt sản phẩm</label>  
+      <div>
+      <input id="product_summary" name="summary" placeholder="Tóm tắt sản phẩm" class="form-control input-md" required="" type="text">
+        
+      </div>
     </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
+    
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_description">Mô tả sản phẩm</label>
+      <div>
+        <input id="product_description" name="description" placeholder="Mô tả sản phẩm" class="form-control input-md" required="" type="text">
+
+      </div>
     </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-  </div>
-  <div class="form-group">
+    
+    <label class="col-md-4 control-label">Loại sản phẩm</label>
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
+        <input class="form-check-input" type="checkbox" value="">
+        <label class="form-check-label" >
+          Nam
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="">
+        <label class="form-check-label">
+          Nữ
+        </label>
+      </div>
+        
+     <!-- File Button --> 
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="thumbnail">Ảnh đại diện</label>
+      <div>
+        <input id="thumbnail" name="thumbnail" class="input-file" type="file">
+      </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+    <!-- File Button --> 
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="image">Danh sách ảnh</label>
+      <div>
+        <input id="image" name="filebutton" class="input-file" type="file">
+      </div>
+    </div>
+    
+    <!-- Button -->
+    <div class="form-group">
+        <button class="btn btn-primary">Button</button>
+    </div>
+    
+    </fieldset>
 </form>
+    

@@ -6,6 +6,8 @@ const logger = require('morgan');
 
 const dashboardRouter = require("./components/Dashboard")
 const productRouter = require("./components/Product")
+const authRouter = require("./components/Auth")
+
 const app = express();
 
 // view engine setup
@@ -18,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/login', authRouter)
 app.use('/product', productRouter)
 app.use('/', dashboardRouter);
 
@@ -30,7 +33,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  console.log(err.message)
+  console.log(err)
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
