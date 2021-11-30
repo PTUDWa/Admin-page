@@ -5,6 +5,9 @@ module.exports = {
         res.render("product", {products})
     },
     add: (req, res, next) => {
-        res.render("addProduct")
-    }
+        res.render("addProduct")      
+    },
+    addExec: (req, res, next) => {
+        productService.add(req, res);
+    },
 }
