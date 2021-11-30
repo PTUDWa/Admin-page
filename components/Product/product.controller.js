@@ -10,4 +10,10 @@ module.exports = {
     addExec: (req, res, next) => {
         productService.add(req, res);
     },
+    delete: (req, res, next) => {
+        productService.delete(req);
+    },
+    update: (req, res, next) => {
+        productService.update(req);
+    },
 }
