@@ -30,7 +30,7 @@ class Course{
     async update(req){
         const filter = { title: req.body.title };
         const update = {price: req.body.title, summary: req.body.summary, inStock: req.body.inStock, description: req.body.description, category: req.body.category  };
-        await Character.findOneAndUpdate(filter, update);
+        await Product.findOneAndUpdate(filter, update);
     }
 }
 
