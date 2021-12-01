@@ -1,6 +1,7 @@
 const productService = require('./product.service')
 const PAGE = require("../../constants/page")
 const pageUtils = require("../../utils/page")
+const mongoose = require('mongoose');
 
 module.exports = {
     index: async (req, res, next) => {
@@ -23,5 +24,19 @@ module.exports = {
 
     addExec: (req, res, next) => {
         productService.add(req, res);
+        res.redirect('/product');
+    },
+    delete: (req, res, next) => {
+        productService.delete(req);
+    },
+    update: async (req, res, next) => {
+        console.log(req.query.id)
+        const product = await productService.detail(mongoose.Types.ObjectId(req.query.id));
+        console.log(product.summary);
+        res.render("updateProduct", {product});
+    },
+    updateExec: (req, res, next) => {
+        productService.update(req);
+        res.redirect('/product');
     },
 }

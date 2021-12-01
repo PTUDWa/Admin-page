@@ -159,7 +159,7 @@
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">Thứ tự</th>
+                                            <th class="border-top-0">ID</th>
                                             <th class="border-top-0">Tên sản phẩm</th>
                                             <th class="border-top-0">Phân loại</th>
                                             <th class="border-top-0">Giá</th>
@@ -175,6 +175,10 @@
                                             <td>{{category}}</td>
                                             <td>{{price}}</td>
                                             <td>{{sold}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-success">Update</button>
+                                                <button type="button" class="btn btn-danger">Delete</button>
+                                            </td>
                                         </tr>
                                         {{/each}}
 
