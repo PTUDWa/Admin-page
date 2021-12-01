@@ -1,5 +1,5 @@
 const productService = require('./product.service')
-const { ObjectId } = require('mongodb');
+const mongoose = require('mongoose');
 
 module.exports = {
     index: async (req, res, next) => {
@@ -17,10 +17,13 @@ module.exports = {
         productService.delete(req);
     },
     update: async (req, res, next) => {
-        const product = await productService.detail(ObjectId(req.params.id));
-        res.render('updateProduct', {product})
+        console.log(req.query.id)
+        const product = await productService.detail(mongoose.Types.ObjectId(req.query.id));
+        console.log(product.summary);
+        res.render("updateProduct", {product});
     },
     updateExec: (req, res, next) => {
         productService.update(req);
+        res.redirect('/product');
     },
 }

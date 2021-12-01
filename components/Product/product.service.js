@@ -1,4 +1,5 @@
 const Product = require('./product.model')
+const mongoose = require('mongoose');
 
 class Course{
     show() {
@@ -28,8 +29,11 @@ class Course{
         Product.find({_id: req.body._id}).remove().exec();
     }
     async update(req){
-        const filter = { _id: req.body.id };
-        const update = {title: req.body.title, price: req.body.title, summary: req.body.summary, inStock: req.body.inStock, description: req.body.description, category: req.body.category  };
+        var cate = [];
+        if(req.body.man == "Man") cate.push(req.body.man)
+        if(req.body.woman == "Woman") cate.push(req.body.woman)
+        const filter = { _id: mongoose.Types.ObjectId(req.query.id) };
+        const update = {title: req.body.name, price: req.body.price, summary: req.body.summary, inStock: req.body.inStock, description: req.body.description, category: cate  };
         await Product.findOneAndUpdate(filter, update);
     }
     detail(id){
