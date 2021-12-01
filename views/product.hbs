@@ -159,7 +159,7 @@
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">Thứ tự</th>
+                                            <th class="border-top-0">ID</th>
                                             <th class="border-top-0">Tên sản phẩm</th>
                                             <th class="border-top-0">Phân loại</th>
                                             <th class="border-top-0">Giá</th>
@@ -170,7 +170,7 @@
                                         
                                         {{#each products}}
                                         <tr>
-                                            <td>{{@key}} </td>
+                                            <td>{{_id}} </td>
                                             <td>{{title}}</td>
                                             <td>{{category}}</td>
                                             <td>{{price}}</td>

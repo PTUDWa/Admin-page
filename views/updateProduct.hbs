@@ -1,0 +1,79 @@
+<form class="form-horizontal container" style="max-width: 600px" method="POST">
+    <fieldset>
+    
+    <!-- Form Name -->
+    <legend>Thêm sản phẩm</legend>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_name">Tên sản phẩm</label>  
+      <div>
+      <input id="product_name" name="name" placeholder="Tên sản phẩm" class="form-control input-md" required="" type="text">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_price">Giá sản phẩm</label>  
+      <div>
+      <input id="product_price" name="price" placeholder="Giá sản phẩm" class="form-control input-md" required="" type="number" min="0">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_summary">Tóm tắt sản phẩm</label>  
+      <div>
+      <input id="product_summary" name="summary" placeholder="Tóm tắt sản phẩm" class="form-control input-md" required="" type="text">
+        
+      </div>
+    </div>
+    
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_description">Mô tả sản phẩm</label>
+      <div>
+        <input id="product_description" name="description" placeholder="Mô tả sản phẩm" class="form-control input-md" required="" type="text">
+
+      </div>
+    </div>
+    
+    <label class="col-md-4 control-label">Loại sản phẩm</label>
+    <div class="form-check">
+        <input class="form-check-input" name = "man" type="checkbox" value= "Man">
+        <label class="form-check-label" >
+          Nam
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" name = "woman" type="checkbox" value= "Woman">
+        <label class="form-check-label">
+          Nữ
+        </label>
+      </div>
+        
+     <!-- File Button --> 
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="thumbnail">Ảnh đại diện</label>
+      <div>
+        <input id="thumbnail" name="thumbnail" class="input-file" type="file">
+      </div>
+    </div>
+    <!-- File Button --> 
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="image">Danh sách ảnh</label>
+      <div>
+        <input id="image" name="filebutton" class="input-file" type="file">
+      </div>
+    </div>
+    
+    <!-- Button -->
+    <div class="form-group">
+        <button class="btn btn-primary">Button</button>
+    </div>
+    
+    </fieldset>
+</form>
+    

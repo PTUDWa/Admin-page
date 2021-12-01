@@ -25,11 +25,11 @@ class Course{
         )
     }
     delete(req){
-        Product.find({name: req.body.name}).remove().exec();
+        Product.find({_id: req.body._id}).remove().exec();
     }
     async update(req){
-        const filter = { title: req.body.title };
-        const update = {price: req.body.title, summary: req.body.summary, inStock: req.body.inStock, description: req.body.description, category: req.body.category  };
+        const filter = { _id: req.body._id };
+        const update = {title: req.body.title, price: req.body.title, summary: req.body.summary, inStock: req.body.inStock, description: req.body.description, category: req.body.category  };
         await Product.findOneAndUpdate(filter, update);
     }
 }
