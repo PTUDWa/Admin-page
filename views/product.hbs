@@ -156,14 +156,15 @@
                         <div class="white-box">
                             <h3 class="box-title">Danh sách sản phẩm</h3>
                             <div class="table-responsive">
-                                <table class="table text-nowrap">
+                                <table class="table text-nowrap" style="text-align: center">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">ID</th>
-                                            <th class="border-top-0">Tên sản phẩm</th>
-                                            <th class="border-top-0">Phân loại</th>
-                                            <th class="border-top-0">Giá</th>
-                                            <th class="border-top-0">Đã bán</th>
+                                            <th class="border-top-0 text-center">ID</th>
+                                            <th class="border-top-0 text-center">Tên sản phẩm</th>
+                                            <th class="border-top-0 text-center">Phân loại</th>
+                                            <th class="border-top-0 text-center">Giá</th>
+                                            <th class="border-top-0 text-center">Đã bán</th>
+                                            <th class="border-top-0 text-center">Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -183,7 +184,7 @@
                                         {{/each}}
 
                                         <tr>
-                                            <td colspan="5">
+                                            <td colspan="6">
                                                 <nav aria-label="Page navigation example">
                                                     <ul class="pagination" style="justify-content: flex-end;">
                                                         {{#getPagination}}{{/getPagination}}
