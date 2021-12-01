@@ -36,7 +36,7 @@ class Course{
         )
     }
     delete(req){
-        Product.find({_id: req.body._id}).remove().exec();
+        Product.find({_id: mongoose.Types.ObjectId(req.query.id)}).remove().exec();
     }
     async update(req){
         var cate = [];

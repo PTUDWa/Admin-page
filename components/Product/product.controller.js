@@ -22,12 +22,13 @@ module.exports = {
         res.render("addProduct")      
     },
 
-    addExec: (req, res, next) => {
-        productService.add(req, res);
+    addExec: async (req, res, next) => {
+        await productService.add(req, res);
         res.redirect('/product');
     },
-    delete: (req, res, next) => {
-        productService.delete(req);
+    delete: async (req, res, next) => {
+        await productService.delete(req);
+        res.redirect('/product');
     },
     update: async (req, res, next) => {
         console.log(req.query.id)

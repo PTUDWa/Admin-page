@@ -176,9 +176,12 @@
                                             <td>{{category}}</td>
                                             <td>{{price}}</td>
                                             <td>{{sold}}</td>
+                                             <td>
+                                                
+                                                <a href = "/product/update?id={{_id}}" type="submit" class="btn btn-success">Update</a>
+                                            </td>
                                             <td>
-                                                <button type="button" class="btn btn-success">Update</button>
-                                                <button type="button" class="btn btn-danger">Delete</button>
+                                                <a href = "/product/delete?id={{_id}}" type="submit" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                         {{/each}}
