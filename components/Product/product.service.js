@@ -17,10 +17,10 @@ class Course{
         });
         newProduct.save((err, doc) => {
             if (!err){
-                console.log("SA")
+                return true;
             } 
             else
-                console.log("er")
+                return false;
             }
         )
     }
@@ -28,9 +28,12 @@ class Course{
         Product.find({_id: req.body._id}).remove().exec();
     }
     async update(req){
-        const filter = { _id: req.body._id };
+        const filter = { _id: req.body.id };
         const update = {title: req.body.title, price: req.body.title, summary: req.body.summary, inStock: req.body.inStock, description: req.body.description, category: req.body.category  };
         await Product.findOneAndUpdate(filter, update);
+    }
+    detail(id){
+        return Product.findOne({_id: id}).lean();
     }
 }
 
