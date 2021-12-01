@@ -4,6 +4,15 @@ class Course{
     show() {
         return Product.find({}).lean()
     }
+
+    count() {
+        return Product.count()
+    }
+
+    getItemByPage(page, perPage) {
+        return Product.find({}).skip((page - 1) * perPage).limit(perPage).lean();
+    }
+
     add(req, res) {
         var newProduct = new Product({
             title: req.body.name,
@@ -11,6 +20,7 @@ class Course{
             summary: req.body.summary,
             description: req.body.description,
         });
+
         newProduct.save((err, doc) => {
             if (!err){
                 console.log("SA")

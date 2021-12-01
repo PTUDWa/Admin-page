@@ -3,12 +3,15 @@ const debug = require('debug')('web-admin:server');
 const http = require('http');
 
 const db = require("../database")
+const hbsHelper = require("../utils/hbsHelper")
+
 
 main()
 
 async function main() {
   try {
     await db.connect()
+    hbsHelper()
 
     const port = normalizePort(process.env.PORT || '3000');
     app.set('port', port);
