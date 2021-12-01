@@ -9,21 +9,23 @@ module.exports = {
     add: (req, res, next) => {
         res.render("addProduct")      
     },
-    addExec: (req, res, next) => {
-        productService.add(req, res);
+    addExec:async (req, res, next) => {
+        await productService.add(req, res);
         res.redirect('/product');
     },
-    delete: (req, res, next) => {
-        productService.delete(req);
+    delete: async (req, res, next) => {
+        await productService.delete(req);
+        res.redirect('/product');
     },
     update: async (req, res, next) => {
-        console.log(req.query.id)
+        
         const product = await productService.detail(mongoose.Types.ObjectId(req.query.id));
-        console.log(product.summary);
+        
         res.render("updateProduct", {product});
     },
     updateExec: (req, res, next) => {
-        productService.update(req);
+        productService.update(req);      
         res.redirect('/product');
+        req.flash('success', 'User added successfully!');
     },
 }

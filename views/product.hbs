@@ -176,9 +176,14 @@
                                             <td>{{price}}</td>
                                             <td>{{sold}}</td>
                                             <td>
-                                                <button type="button" class="btn btn-success">Update</button>
-                                                <button type="button" class="btn btn-danger">Delete</button>
+                                                
+                                                <a href = "/product/update?id={{_id}}" type="submit" class="btn btn-success">Update</a>
                                             </td>
+                                            <td>
+                                                <a href = "/product/delete?id={{_id}}" type="submit" class="btn btn-danger">Delete</a>
+                                            </td>
+                                             
+                                            
                                         </tr>
                                         {{/each}}
                                     </tbody>
@@ -221,13 +226,17 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/app-style-switcher.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/app-style-switcher.js"></script>
     <!--Wave Effects -->
-    <script src="js/waves.js"></script>
+    <script src="/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
+    <script src="/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="js/custom.js"></script>
+    <script src="/js/custom.js"></script>
+    <!-- Add -->
+    <script src = "/plugins/modal/bootstrap.min.js"></script>
+    
+    <!-- Modal -->
