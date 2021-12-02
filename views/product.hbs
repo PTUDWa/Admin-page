@@ -25,13 +25,13 @@
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!-- Dark Logo icon -->
-                            <img src="plugins/images/logo-icon.png" alt="homepage" />
+                            <img src="/plugins/images/logo-icon.png" alt="homepage" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="plugins/images/logo-text.png" alt="homepage" />
+                            <img src="/plugins/images/logo-text.png" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -74,7 +74,7 @@
                         <!-- ============================================================== -->
                         <li>
                             <a class="profile-pic" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
+                                <img src="/plugins/images/users/varun.jpg" alt="user-img" width="36"
                                     class="img-circle"><span class="text-white font-medium">Steave</span></a>
                         </li>
                         <!-- ============================================================== -->
@@ -156,36 +156,49 @@
                         <div class="white-box">
                             <h3 class="box-title">Danh sách sản phẩm</h3>
                             <div class="table-responsive">
-                                <table class="table text-nowrap">
+                                <table class="table text-nowrap" style="text-align: center">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">ID</th>
-                                            <th class="border-top-0">Tên sản phẩm</th>
-                                            <th class="border-top-0">Phân loại</th>
-                                            <th class="border-top-0">Giá</th>
-                                            <th class="border-top-0">Đã bán</th>
+                                            <th class="border-top-0 text-center">ID</th>
+                                            <th class="border-top-0 text-center">Tên sản phẩm</th>
+                                            <th class="border-top-0 text-center">Phân loại</th>
+                                            <th class="border-top-0 text-center">Giá</th>
+                                            <th class="border-top-0 text-center">Đã bán</th>
+                                            <th class="border-top-0 text-center">Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         
-                                        {{#each products}}
+                                        {{#each productsWithKey}}
                                         <tr>
-                                            <td>{{_id}} </td>
+                                            <td>{{key}} </td>
                                             <td>{{title}}</td>
                                             <td>{{category}}</td>
                                             <td>{{price}}</td>
                                             <td>{{sold}}</td>
+                                            
                                             <td>
+
                                                 
                                                 <a href = "/product/update?id={{_id}}" type="submit" class="btn btn-success">Update</a>
-                                            </td>
-                                            <td>
+
                                                 <a href = "/product/delete?id={{_id}}" type="submit" class="btn btn-danger">Delete</a>
+
                                             </td>
-                                             
+                         
                                             
                                         </tr>
                                         {{/each}}
+
+                                        <tr>
+                                            <td colspan="6">
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination" style="justify-content: flex-end;">
+                                                        {{#getPagination}}{{/getPagination}}
+                                                    </ul>
+                                                </nav>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -235,8 +248,9 @@
     <!--Menu sidebar -->
     <script src="/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
+
     <script src="/js/custom.js"></script>
     <!-- Add -->
     <script src = "/plugins/modal/bootstrap.min.js"></script>
     
-    <!-- Modal -->
+

@@ -1,15 +1,29 @@
 const productService = require('./product.service')
+const PAGE = require("../../constants/page")
+const pageUtils = require("../../utils/page")
 const mongoose = require('mongoose');
 
 module.exports = {
     index: async (req, res, next) => {
-        const products = await productService.show();
-        res.render("product", {products})
+        const page = parseInt(req.query.page) || 1;
+        const total = await productService.count();
+        const pagination = pageUtils.getPagination(page, total)
+
+        const products = await productService.getItemByPage(page, PAGE.perPage);
+        const productsWithKey = products.map((product, index) => ({
+            ...product,
+            key: pagination.keys[index]
+        }))
+        
+        res.render("product", {productsWithKey, pagination, curPage: page,})
     },
+
     add: (req, res, next) => {
         res.render("addProduct")      
     },
-    addExec:async (req, res, next) => {
+
+
+    addExec: async (req, res, next) => {
         await productService.add(req, res);
         res.redirect('/product');
     },

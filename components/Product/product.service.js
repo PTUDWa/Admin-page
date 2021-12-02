@@ -5,6 +5,15 @@ class Course{
     show() {
         return Product.find({}).lean()
     }
+
+    count() {
+        return Product.count()
+    }
+
+    getItemByPage(page, perPage) {
+        return Product.find({}).skip((page - 1) * perPage).limit(perPage).lean();
+    }
+
     add(req, res) {
         var cate = [];
         if(req.body.man == "Man") cate.push(req.body.man)
@@ -16,6 +25,7 @@ class Course{
             description: req.body.description,
             category: cate,
         });
+
         newProduct.save((err, doc) => {
             if (!err){
                 return true;
@@ -26,7 +36,6 @@ class Course{
         )
     }
     delete(req){
-        
         Product.find({_id: mongoose.Types.ObjectId(req.query.id)}).remove().exec();
     }
     async update(req){
