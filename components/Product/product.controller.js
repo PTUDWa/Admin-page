@@ -22,6 +22,7 @@ module.exports = {
         res.render("addProduct")      
     },
 
+
     addExec: async (req, res, next) => {
         await productService.add(req, res);
         res.redirect('/product');
@@ -31,13 +32,14 @@ module.exports = {
         res.redirect('/product');
     },
     update: async (req, res, next) => {
-        console.log(req.query.id)
+        
         const product = await productService.detail(mongoose.Types.ObjectId(req.query.id));
-        console.log(product.summary);
+        
         res.render("updateProduct", {product});
     },
     updateExec: (req, res, next) => {
-        productService.update(req);
+        productService.update(req);      
         res.redirect('/product');
+        req.flash('success', 'User added successfully!');
     },
 }
