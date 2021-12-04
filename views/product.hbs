@@ -182,7 +182,7 @@
                                                 
                                                 <a href = "/product/update?id={{_id}}" type="submit" class="btn btn-success">Update</a>
 
-                                                <a href = "/product/delete?id={{_id}}" type="submit" class="btn btn-danger">Delete</a>
+                                                <button class="btn btn-danger deleteBtn" data-id={{_id}}>Delete</button>
 
                                             </td>
                          
@@ -239,9 +239,36 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary closeModelBtn">Close</button>
+        <button class="btn btn-primary saveModelBtn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form id="deleteProductForm" style="display: none" action="/product/delete">
+    <input id="deleteProductId" name="id" value = ""> 
+</form>
+
+
+    <script src = "/plugins/modal/bootstrap.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/app-style-switcher.js"></script>
     <!--Wave Effects -->
     <script src="/js/waves.js"></script>
@@ -250,7 +277,38 @@
     <!--Custom JavaScript -->
 
     <script src="/js/custom.js"></script>
-    <!-- Add -->
-    <script src = "/plugins/modal/bootstrap.min.js"></script>
-    
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const deleteBtn = document.querySelectorAll(".deleteBtn")
+            const closeModelBtn = document.querySelector(".closeModelBtn");
+            const saveModelBtn = document.querySelector(".saveModelBtn");
+            const deleteTrigger = document.getElementById("deleteTrigger");
+
+            let deleteId = null;
+
+            for (let btn of deleteBtn) {
+                btn.addEventListener("click", () => {
+                    $('#exampleModal').modal('show')
+                    deleteId = $(btn).data("id");
+                })
+            }
+
+            closeModelBtn.addEventListener("click", () => {
+                deleteId = null;
+                $('#exampleModal').modal('hide')
+            })
+
+            saveModelBtn.addEventListener("click", () => {
+                if (deleteId) {
+                    const deleteProductForm = document.getElementById("deleteProductForm")
+                    const deleteProductId = document.getElementById("deleteProductId")
+
+                    deleteProductId.value = deleteId;
+                    deleteProductForm.submit()
+
+                    deleteId = null;
+                }
+            })
+        })
+    </script>
