@@ -19,21 +19,14 @@
   data-header-position="absolute"
   data-boxed-layout="full"
 >
+  <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
     <div class="page-breadcrumb bg-white">
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">Quản lí sản phẩm</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-          <div class="d-md-flex justify-content-end">
-            <a
-              href="/product/add"
-              class="btn btn-danger d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white"
-            >Thêm sản phẩm mới</a>
-          </div>
+          <h4 class="page-title">Danh sách người quản lí</h4>
         </div>
       </div>
       <!-- /.col-lg-12 -->
@@ -51,53 +44,35 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="white-box">
-            <h3 class="box-title">Danh sách sản phẩm</h3>
+            <h3 class="box-title">Danh sách</h3>
             <div class="table-responsive">
               <table class="table text-nowrap" style="text-align: center">
                 <thead>
                   <tr>
                     <th class="border-top-0 text-center">ID</th>
-                    <th class="border-top-0 text-center">Tên sản phẩm</th>
-                    <th class="border-top-0 text-center">Phân loại</th>
-                    <th class="border-top-0 text-center">Giá</th>
-                    <th class="border-top-0 text-center">Đã bán</th>
-                    <th class="border-top-0 text-center">Hành động</th>
+                    <th class="border-top-0 text-center">Tên quản lí</th>
+                    <th class="border-top-0 text-center">Tài khoản</th>
+                    <th class="border-top-0 text-center">Loại</th>
+                    {{! <th class="border-top-0 text-center">Hành động</th> }}
                   </tr>
                 </thead>
                 <tbody>
 
-                  {{!-- {{#each productsWithKey}}
+                  {{#each adminWithKey}}
                     <tr>
                       <td>{{key}} </td>
-                      <td>{{title}}</td>
-                      <td>{{category}}</td>
-                      <td>{{price}}</td>
-                      <td>{{sold}}</td>
-
-                      <td>
-
+                      <td>{{name}}</td>
+                      <td>{{username}}</td>
+                      <td>{{type}}</td>
+                      {{!-- <td>
                         <button
                           class="btn btn-danger deleteBtn"
                           data-id={{_id}}
-                        >Delete</button>
-
-                      </td>
+                        >Khoá</button>
+                      </td> --}}
 
                     </tr>
-                  {{/each}} --}}
-
-                  {{!-- <tr>
-                    <td colspan="6">
-                      <nav aria-label="Page navigation example">
-                        <ul
-                          class="pagination"
-                          style="justify-content: flex-end;"
-                        >
-                          {{#getPagination}}{{/getPagination}}
-                        </ul>
-                      </nav>
-                    </td>
-                  </tr> --}}
+                  {{/each}}
                 </tbody>
               </table>
             </div>
