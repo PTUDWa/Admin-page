@@ -153,13 +153,23 @@
             <!-- User profile and search -->
             <!-- ============================================================== -->
             <li>
-              <a class="profile-pic" href="#">
+              {{#if user}}
+                <a class="btn btn-info" href="/account/detail">
+                
+                <span class="text-white font-medium">{{user.name}}</span></a>
+                <a class="btn btn-secondary" href="/auth/logout">
+                
+                <span class="text-white font-medium">Logout</span></a>
+              {{else}}
+                <a class="btn btn-success" href="/auth/login">
                 <img
                   src="/plugins/images/users/varun.jpg"
                   alt="user-img"
                   width="36"
                   class="img-circle"
-                /><span class="text-white font-medium">Steave</span></a>
+                /><span class="text-white font-medium">Login</span></a>
+              {{/if}}
+              
             </li>
             <!-- ============================================================== -->
             <!-- User profile and search -->
@@ -194,7 +204,7 @@
             <li class="sidebar-item pt-2">
               <a
                 class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="/auth/createAdmin"
+                href="/account/createAdmin"
                 aria-expanded="false"
               >
                 <i class="far fa-clock" aria-hidden="true"></i>
@@ -204,7 +214,7 @@
             <li class="sidebar-item pt-2">
               <a
                 class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="/auth/listAdmin"
+                href="/account/listAdmin"
                 aria-expanded="false"
               >
                 <i class="far fa-clock" aria-hidden="true"></i>
