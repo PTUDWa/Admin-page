@@ -15,7 +15,7 @@ module.exports = {
             key: pagination.keys[index]
         }))
         
-        res.render("product", {productsWithKey, pagination, curPage: page,})
+        res.render("product", {productsWithKey, pagination, curPage: page})
     },
 
     add: (req, res, next) => {
