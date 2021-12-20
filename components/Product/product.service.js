@@ -1,54 +1,63 @@
-const Product = require('./product.model')
-const mongoose = require('mongoose');
+const Product = require("./product.model");
+const mongoose = require("mongoose");
 
-class Course{
-    show() {
-        return Product.find({}).lean()
-    }
+class Course {
+  show() {
+    return Product.find({}).lean();
+  }
 
-    count() {
-        return Product.count()
-    }
+  count() {
+    return Product.count();
+  }
 
-    getItemByPage(page, perPage) {
-        return Product.find({}).skip((page - 1) * perPage).limit(perPage).lean();
-    }
+  getItemByPage(page, perPage) {
+    return Product.find({})
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .lean();
+  }
 
-    add(req, res) {
-        var cate = [];
-        if(req.body.man == "Man") cate.push(req.body.man)
-        if(req.body.woman == "Woman") cate.push(req.body.woman)
-        var newProduct = new Product({
-            title: req.body.name,
-            price: req.body.price,
-            summary: req.body.summary,
-            description: req.body.description,
-            category: cate,
-        });
+  add({ man, woman, name, price, summary, description }) {
+    var cate = [];
+    if (man == "Man") cate.push(man);
+    if (woman == "Woman") cate.push(woman);
+    var newProduct = new Product({
+      title: name,
+      price: price,
+      summary: summary,
+      description: description,
+      category: cate,
+    });
 
-        newProduct.save((err, doc) => {
-            if (!err){
-                return true;
-            } 
-            else
-                return false;
-            }
-        )
-    }
-    delete(req){
-        Product.find({_id: mongoose.Types.ObjectId(req.query.id)}).remove().exec();
-    }
-    async update(req){
-        var cate = [];
-        if(req.body.man == "Man") cate.push(req.body.man)
-        if(req.body.woman == "Woman") cate.push(req.body.woman)
-        const filter = { _id: mongoose.Types.ObjectId(req.query.id) };
-        const update = {title: req.body.name, price: req.body.price, summary: req.body.summary, inStock: req.body.inStock, description: req.body.description, category: cate  };
-        await Product.findOneAndUpdate(filter, update);
-    }
-    detail(id){
-        return Product.findOne({_id: id}).lean();
-    }
+    newProduct.save((err, doc) => {
+      if (!err) {
+        return true;
+      } else return false;
+    });
+  }
+  delete(id) {
+    Product.find({ _id: mongoose.Types.ObjectId(id) })
+      .remove()
+      .exec();
+  }
+  async update({ man, woman, name, price, summary, inStock, description, id }) {
+    var cate = [];
+    if (man == "Man") cate.push(man);
+    if (req.body.woman == "Woman") cate.push(woman);
+    const filter = { _id: mongoose.Types.ObjectId(id) };
+    const update = {
+      title: name,
+      price: price,
+      summary: summary,
+      inStock: inStock,
+      description: description,
+      category: cate,
+    };
+    await Product.findOneAndUpdate(filter, update);
+  }
+  detail(id) {
+    return Product.findOne({ _id: id }).lean();
+  }
 }
 
 module.exports = new Course();

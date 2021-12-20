@@ -23,11 +23,13 @@ module.exports = {
   },
 
   addExec: async (req, res, next) => {
-    await productService.add(req, res);
+    const { man, woman, name, price, summary, description } = req.body;
+    await productService.add({ man, woman, name, price, summary, description });
     res.redirect("/product");
   },
   delete: async (req, res, next) => {
-    await productService.delete(req);
+    const id = req.query.id;
+    await productService.delete(id);
     res.redirect("/product");
   },
   update: async (req, res, next) => {
@@ -38,7 +40,18 @@ module.exports = {
     res.render("updateProduct", { product });
   },
   updateExec: (req, res, next) => {
-    productService.update(req);
+    const { man, woman, name, price, summary, inStock, description } = req.body;
+    const { id } = req.query;
+    productService.update({
+      man,
+      woman,
+      name,
+      price,
+      summary,
+      inStock,
+      description,
+      id,
+    });
     res.redirect("/product");
     req.flash("success", "User added successfully!");
   },
