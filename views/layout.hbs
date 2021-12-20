@@ -3,30 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="keywords"
-      content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template"
-    />
-    <meta
-      name="description"
-      content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
-    />
-    <meta name="robots" content="noindex,nofollow" />
     <title>{{title}}</title>
-    <link
-      rel="canonical"
-      href="https://www.wrappixel.com/templates/ample-admin-lite/"
-    />
-    <!-- Favicon icon -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/plugins/images/favicon.png"
-    />
-    <!-- Custom CSS -->
     <link
       href="/plugins/bower_components/chartist/dist/chartist.min.css"
       rel="stylesheet"
@@ -35,12 +13,6 @@
       rel="stylesheet"
       href="/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"
     />
-    <!-- Custom CSS -->
-    <link href="/css/style.min.css" rel="stylesheet" />
-
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/images/icons/favicon.ico" />
-    <!--===============================================================================================-->
     <link
       rel="stylesheet"
       type="text/css"
@@ -85,6 +57,8 @@
       href="/vendor/daterangepicker/daterangepicker.css"
     />
     <!--===============================================================================================-->
+    <!-- Custom CSS -->
+    <link href="/css/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/css/util.css" />
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <!--===============================================================================================-->
@@ -155,21 +129,21 @@
             <li>
               {{#if user}}
                 <a class="btn btn-info" href="/account/detail">
-                
-                <span class="text-white font-medium">{{user.name}}</span></a>
+
+                  <span class="text-white font-medium">{{user.name}}</span></a>
                 <a class="btn btn-secondary" href="/auth/logout">
-                
-                <span class="text-white font-medium">Logout</span></a>
+
+                  <span class="text-white font-medium">Logout</span></a>
               {{else}}
                 <a class="btn btn-success" href="/auth/login">
-                <img
-                  src="/plugins/images/users/varun.jpg"
-                  alt="user-img"
-                  width="36"
-                  class="img-circle"
-                /><span class="text-white font-medium">Login</span></a>
+                  <img
+                    src="/plugins/images/users/varun.jpg"
+                    alt="user-img"
+                    width="36"
+                    class="img-circle"
+                  /><span class="text-white font-medium">Login</span></a>
               {{/if}}
-              
+
             </li>
             <!-- ============================================================== -->
             <!-- User profile and search -->

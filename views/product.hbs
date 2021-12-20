@@ -10,15 +10,8 @@
 <!-- ============================================================== -->
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
-<div
-  id="main-wrapper"
-  data-layout="vertical"
-  data-navbarbg="skin5"
-  data-sidebartype="full"
-  data-sidebar-position="absolute"
-  data-header-position="absolute"
-  data-boxed-layout="full"
->
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+  data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
   <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -30,10 +23,9 @@
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
           <div class="d-md-flex justify-content-end">
-            <a
-              href="/product/add"
-              class="btn btn-danger d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white"
-            >Thêm sản phẩm mới</a>
+            <a href="/product/add"
+              class="btn btn-danger d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Thêm
+              sản phẩm mới</a>
           </div>
         </div>
       </div>
@@ -68,38 +60,28 @@
                 <tbody>
 
                   {{#each productsWithKey}}
-                    <tr>
-                      <td>{{key}} </td>
-                      <td>{{title}}</td>
-                      <td>{{category}}</td>
-                      <td>{{price}}</td>
-                      <td>{{sold}}</td>
+                  <tr>
+                    <td>{{key}} </td>
+                    <td>{{title}}</td>
+                    <td>{{category}}</td>
+                    <td>{{price}}</td>
+                    <td>{{sold}}</td>
 
-                      <td>
+                    <td>
 
-                        <a
-                          href="/product/update?id={{_id}}"
-                          type="submit"
-                          class="btn btn-success"
-                        >Update</a>
+                      <a href="/product/update?id={{_id}}" type="submit" class="btn btn-success">Update</a>
 
-                        <button
-                          class="btn btn-danger deleteBtn"
-                          data-id={{_id}}
-                        >Delete</button>
+                      <button class="btn btn-danger deleteBtn" data-id={{_id}}>Delete</button>
 
-                      </td>
+                    </td>
 
-                    </tr>
+                  </tr>
                   {{/each}}
 
                   <tr>
                     <td colspan="6">
                       <nav aria-label="Page navigation example">
-                        <ul
-                          class="pagination"
-                          style="justify-content: flex-end;"
-                        >
+                        <ul class="pagination" style="justify-content: flex-end;">
                           {{#getPagination}}{{/getPagination}}
                         </ul>
                       </nav>
@@ -143,24 +125,13 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
 
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -193,17 +164,28 @@
 <script src="/js/custom.js"></script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => { const deleteBtn =
-  document.querySelectorAll(".deleteBtn") const closeModelBtn =
-  document.querySelector(".closeModelBtn"); const saveModelBtn =
-  document.querySelector(".saveModelBtn"); const deleteTrigger =
-  document.getElementById("deleteTrigger"); let deleteId = null; for (let btn of
-  deleteBtn) { btn.addEventListener("click", () => {
-  $('#exampleModal').modal('show') deleteId = $(btn).data("id"); }) }
-  closeModelBtn.addEventListener("click", () => { deleteId = null;
-  $('#exampleModal').modal('hide') }) saveModelBtn.addEventListener("click", ()
-  => { if (deleteId) { const deleteProductForm =
-  document.getElementById("deleteProductForm") const deleteProductId =
-  document.getElementById("deleteProductId") deleteProductId.value = deleteId;
-  deleteProductForm.submit() deleteId = null; } }) })
+  document.addEventListener("DOMContentLoaded", () => {
+    const deleteBtn =
+      document.querySelectorAll(".deleteBtn") const closeModelBtn =
+        document.querySelector(".closeModelBtn"); const saveModelBtn =
+          document.querySelector(".saveModelBtn"); const deleteTrigger =
+            document.getElementById("deleteTrigger"); let deleteId = null; for (let btn of
+      deleteBtn) {
+        btn.addEventListener("click", () => {
+          $('#exampleModal').modal('show') deleteId = $(btn).data("id");
+        })
+    }
+    closeModelBtn.addEventListener("click", () => {
+      deleteId = null;
+      $('#exampleModal').modal('hide')
+    }) saveModelBtn.addEventListener("click", ()
+      => {
+        if (deleteId) {
+          const deleteProductForm =
+            document.getElementById("deleteProductForm") const deleteProductId =
+              document.getElementById("deleteProductId") deleteProductId.value = deleteId;
+          deleteProductForm.submit() deleteId = null;
+        }
+    })
+  })
 </script>

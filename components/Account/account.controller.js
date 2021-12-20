@@ -14,7 +14,9 @@ module.exports = {
   },
 
   createAdmin: async function (req, res, next) {
-    await authService.createAdmin(req, res);
+    const { username, password, name } = req.body;
+
+    await authService.createAdmin({ username, password, name });
     res.redirect("/");
   },
 

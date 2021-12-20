@@ -10,12 +10,12 @@ class Course {
   validPassword(password, user) {
     return bcrypt.compare(password, user.password);
   }
-  async createAdmin(req, res) {
-    const passwordHash = await bcrypt.hash(req.body.password, 10);
+  async createAdmin({ username, password, name }) {
+    const passwordHash = await bcrypt.hash(password, 10);
     var ad = new Admin({
-      username: req.body.username,
+      username: username,
       password: passwordHash,
-      name: req.body.name,
+      name: name,
     });
 
     ad.save((err, doc) => {
