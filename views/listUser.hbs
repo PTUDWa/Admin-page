@@ -1,0 +1,180 @@
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+  <div class="lds-ripple">
+    <div class="lds-pos"></div>
+    <div class="lds-pos"></div>
+  </div>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div
+  id="main-wrapper"
+  data-layout="vertical"
+  data-navbarbg="skin5"
+  data-sidebartype="full"
+  data-sidebar-position="absolute"
+  data-header-position="absolute"
+  data-boxed-layout="full"
+>
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+          <h4 class="page-title">Danh sách người quản lí</h4>
+        </div>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="white-box">
+            <h3 class="box-title">List of user</h3>
+            <div class="table-responsive">
+              <table class="table text-nowrap" style="text-align: center">
+                <thead>
+                  <tr>
+                    <th class="border-top-0 text-center">Index</th>
+                    <th class="border-top-0 text-center">Username</th>
+                    <th class="border-top-0 text-center">Name</th>
+                    <th class="border-top-0 text-center">Phone number</th>
+                    <th class="border-top-0 text-center">Email</th>
+                    <th class="border-top-0 text-center">Address</th>
+                    <th class="border-top-0 text-center">Action</th>
+                    {{! <th class="border-top-0 text-center">Hành động</th> }}
+                  </tr>
+                </thead>
+                <tbody>
+
+                  {{#each userWithKey}}
+                    <tr>
+                      <td>{{key}} </td>
+                      <td>{{username}}</td>
+                      <td>{{name}}</td>
+                      <td>{{phoneNumber}}</td>
+                      <td>{{email}}</td>
+                      <td>{{address}}</td>
+                      {{#if lock_status}}
+                        <td><a class="btn btn-success" id={{_id}}>Unlock</a></td>
+                      {{else}}
+                        <td><a class="btn btn-danger" id={{_id}}>Lock</a></td>
+                      {{/if}}
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- End PAge Content -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Right sidebar -->
+      <!-- ============================================================== -->
+      <!-- .right-sidebar -->
+      <!-- ============================================================== -->
+      <!-- End Right sidebar -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Page wrapper  -->
+  <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary closeModelBtn">Close</button>
+        <button class="btn btn-primary saveModelBtn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form id="deleteProductForm" style="display: none" action="/product/delete">
+  <input id="deleteProductId" name="id" value="" />
+</form>
+
+<script src="/plugins/modal/bootstrap.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="/js/app-style-switcher.js"></script>
+<!--Wave Effects -->
+<script src="/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+
+<script src="/js/custom.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => { const deleteBtn =
+  document.querySelectorAll(".deleteBtn") const closeModelBtn =
+  document.querySelector(".closeModelBtn"); const saveModelBtn =
+  document.querySelector(".saveModelBtn"); const deleteTrigger =
+  document.getElementById("deleteTrigger"); let deleteId = null; for (let btn of
+  deleteBtn) { btn.addEventListener("click", () => {
+  $('#exampleModal').modal('show') deleteId = $(btn).data("id"); }) }
+  closeModelBtn.addEventListener("click", () => { deleteId = null;
+  $('#exampleModal').modal('hide') }) saveModelBtn.addEventListener("click", ()
+  => { if (deleteId) { const deleteProductForm =
+  document.getElementById("deleteProductForm") const deleteProductId =
+  document.getElementById("deleteProductId") deleteProductId.value = deleteId;
+  deleteProductForm.submit() deleteId = null; } }) })
+</script>

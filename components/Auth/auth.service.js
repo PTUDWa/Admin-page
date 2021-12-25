@@ -24,8 +24,11 @@ class Course {
       } else return false;
     });
   }
-  showUser() {
+  showAdmin() {
     return Admin.find({}).lean();
+  }
+  showUser() {
+    return User.find({}).lean();
   }
 }
 
