@@ -24,8 +24,25 @@ class Course {
       } else return false;
     });
   }
-  showUser() {
+  showAdmin() {
     return Admin.find({}).lean();
+  }
+  showUser() {
+    return User.find({}).lean();
+  }
+  async lockUser(id){
+    const filter = { _id: mongoose.Types.ObjectId(id) };
+    const update = {
+      lock_status: true,
+    };
+    await User.findOneAndUpdate(filter, update);
+  }
+  async unlockUser(id){
+    const filter = { _id: mongoose.Types.ObjectId(id) };
+    const update = {
+      lock_status: false,
+    };
+    await User.findOneAndUpdate(filter, update);
   }
 }
 
