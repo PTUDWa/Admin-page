@@ -34,10 +34,12 @@ module.exports = {
   },
   lockUser: async function (req, res, next) {
     const id = req.body.id;
-    authService.lockUser(id);
+    await authService.lockUser(id);
+    res.status(201).json(id);
   },
   unlockUser: async function (req, res, next) {
     const id = req.body.id;
-    authService.unlockUser(id);
+    await authService.unlockUser(id);
+    res.status(201).json(id);
   },
 };
