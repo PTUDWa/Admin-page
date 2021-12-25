@@ -1,0 +1,21 @@
+#avatarPreview {
+  width: 300px;
+  margin-top: 12px;
+}
+
+#imagePreview {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 12px;
+}
+
+.errorMessage {
+  color: red;
+  margin: 8px;
+}
+
+.form-horizontal .form-group .form-control,
+.form-horizontal .form-group .form-select {
+  padding: 12px 16px;
+}

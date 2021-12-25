@@ -6,14 +6,14 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const flash = require("express-flash");
 const session = require("express-session");
-const passport = require('./passport')
-require('dotenv').config()
+const passport = require("./passport");
+require("dotenv").config();
 
 const dashboardRouter = require("./components/Dashboard");
 const productRouter = require("./components/Product");
 const authRouter = require("./components/Auth");
-const accountRouter = require('./components/Account')
-const loggedInUserGuard = require('./middlewares/loggedInUserGuard');
+const accountRouter = require("./components/Account");
+const loggedInUserGuard = require("./middlewares/loggedInUserGuard");
 
 const app = express();
 
@@ -26,6 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/utils", express.static(path.join(__dirname, "./utils")));
 
 app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
@@ -33,12 +34,12 @@ app.use(passport.session());
 app.use(function (req, res, next) {
   res.locals.user = req.user;
   next();
-})
+});
 
-app.use("/auth",  authRouter);
-app.use("/product",loggedInUserGuard, productRouter);
-app.use("/",loggedInUserGuard, dashboardRouter);
-app.use('/account',loggedInUserGuard, accountRouter)
+app.use("/auth", authRouter);
+app.use("/product", loggedInUserGuard, productRouter);
+app.use("/", loggedInUserGuard, dashboardRouter);
+app.use("/account", loggedInUserGuard, accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

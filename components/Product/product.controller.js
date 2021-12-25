@@ -24,6 +24,8 @@ module.exports = {
 
   addExec: async (req, res, next) => {
     const { man, woman, name, price, summary, description } = req.body;
+    const error = {};
+
     await productService.add({ man, woman, name, price, summary, description });
     res.redirect("/product");
   },
