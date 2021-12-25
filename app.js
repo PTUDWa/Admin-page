@@ -22,6 +22,12 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
 app.use(logger("dev"));
+app.use(
+  bodyParser.json({
+    extended: true,
+    limit: "50mb",
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

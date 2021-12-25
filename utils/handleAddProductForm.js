@@ -61,21 +61,77 @@ imageInput.addEventListener("change", (e) => {
 });
 
 form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
   const category = document.querySelectorAll("input[name='category']:checked");
   const name = nameInput.value;
   const price = priceInput.value;
   const summary = summaryInput.value;
   const description = descriptionInput.value;
 
-  nameError.innerText = name ? "" : "Required";
-  priceError.innerText = price && price > 0 ? "" : "Invalid";
-  summaryError.innerText = summary ? "" : "Required";
-  descriptioError.innerText = description ? "" : "Required";
-  categoryError.innerText = category.length ? "" : "Required";
-  avatarError.innerText = Object.keys(avatar).length ? "" : "Required";
-  imageError.innerText = image.length ? "" : "Required";
+  const hasError = false;
 
-  console.log(name, price, summary, description);
-  console.log(category);
-  event.preventDefault();
+  if (name) {
+    nameError.innerText = "";
+  } else {
+    hasError = true;
+    nameError.innerText = "Required";
+  }
+
+  if (price && price > 0) {
+    priceError.innerText = "";
+  } else {
+    hasError = true;
+    priceError.innerText = "Required";
+  }
+  if (summary) {
+    summaryError.innerText = "";
+  } else {
+    hasError = true;
+    summaryError.innerText = "Required";
+  }
+  if (description) {
+    descriptioError.innerText = "";
+  } else {
+    hasError = true;
+    descriptioError.innerText = "Required";
+  }
+  if (category.length) {
+    categoryError.innerText = "";
+  } else {
+    hasError = true;
+    categoryError.innerText = "Required";
+  }
+  if (Object.keys(avatar).length) {
+    avatarError.innerText = "";
+  } else {
+    hasError = true;
+    avatarError.innerText = "Required";
+  }
+  if (image.length) {
+    imageError.innerText = "";
+  } else {
+    hasError = true;
+    imageError.innerText = "Required";
+  }
+
+  const data = {
+    name,
+    price,
+    summary,
+    description,
+    category: [...category].map((item) => item.value),
+    avatar,
+    image,
+  };
+
+  if (!hasError) {
+    fetch("/product/add", {
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    }).then((res) => (window.location = "/product"));
+  }
 });

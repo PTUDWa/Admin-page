@@ -17,16 +17,15 @@ class Course {
       .lean();
   }
 
-  add({ man, woman, name, price, summary, description }) {
-    var cate = [];
-    if (man == "Man") cate.push(man);
-    if (woman == "Woman") cate.push(woman);
+  add({ ava, images, category, name, price, summary, description }) {
     var newProduct = new Product({
       title: name,
-      price: price,
-      summary: summary,
-      description: description,
-      category: cate,
+      price,
+      summary,
+      description,
+      category,
+      thumbnail: ava,
+      image: images,
     });
 
     newProduct.save((err, doc) => {

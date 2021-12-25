@@ -2,6 +2,7 @@ const productService = require("./product.service");
 const PAGE = require("../../constants/page");
 const pageUtils = require("../../utils/page");
 const mongoose = require("mongoose");
+const cloud = require("../../cloud/index");
 
 module.exports = {
   index: async (req, res, next) => {
@@ -23,11 +24,30 @@ module.exports = {
   },
 
   addExec: async (req, res, next) => {
-    const { man, woman, name, price, summary, description } = req.body;
-    const error = {};
+    const { category, avatar, image, name, price, summary, description } =
+      req.body;
 
-    await productService.add({ man, woman, name, price, summary, description });
-    res.redirect("/product");
+    const ava = (await cloud.uploader.upload(avatar.src)).url;
+    const images = [];
+
+    for (let img of image) {
+      const reuslt = await cloud.uploader.upload(img.src);
+      images.push(reuslt.url);
+    }
+
+    await productService.add({
+      ava,
+      images,
+      category,
+      name,
+      price,
+      summary,
+      description,
+    });
+
+    console.log("Done");
+
+    res.send("success");
   },
   delete: async (req, res, next) => {
     const id = req.query.id;
