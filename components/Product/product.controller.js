@@ -9,8 +9,19 @@ module.exports = {
     const page = parseInt(req.query.page) || 1;
     const total = await productService.count();
     const pagination = pageUtils.getPagination(page, total);
+    const queryObject = {};
 
-    const products = await productService.getItemByPage(page, PAGE.perPage);
+    if (req.query.category) {
+      queryObject.category = req.query.category;
+    }
+
+    console.log(queryObject);
+
+    const products = await productService.getItemByPage(
+      page,
+      PAGE.perPage,
+      queryObject
+    );
     const productsWithKey = products.map((product, index) => ({
       ...product,
       key: pagination.keys[index],
