@@ -27,17 +27,30 @@ class Course {
   showAdmin() {
     return Admin.find({}).lean();
   }
+
+  countUser() {
+    return User.count();
+  }
+
   showUser() {
     return User.find({}).lean();
   }
-  async lockUser(id){
+
+  getUserByPage(page, perPage) {
+    return User.find({})
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .lean();
+  }
+
+  async lockUser(id) {
     const filter = { _id: mongoose.Types.ObjectId(id) };
     const update = {
       lock_status: true,
     };
     await User.findOneAndUpdate(filter, update);
   }
-  async unlockUser(id){
+  async unlockUser(id) {
     const filter = { _id: mongoose.Types.ObjectId(id) };
     const update = {
       lock_status: false,

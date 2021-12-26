@@ -10,15 +10,8 @@
 <!-- ============================================================== -->
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
-<div
-  id="main-wrapper"
-  data-layout="vertical"
-  data-navbarbg="skin5"
-  data-sidebartype="full"
-  data-sidebar-position="absolute"
-  data-header-position="absolute"
-  data-boxed-layout="full"
->
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+  data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
   <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -41,7 +34,7 @@
       <!-- ============================================================== -->
       <!-- Start Page Content -->
       <!-- ============================================================== -->
-    
+
       <div class="row">
         <div class="col-sm-12">
           <div class="white-box">
@@ -63,20 +56,29 @@
                 <tbody>
 
                   {{#each userWithKey}}
-                    <tr>
-                      <td>{{key}} </td>
-                      <td>{{username}}</td>
-                      <td>{{name}}</td>
-                      <td>{{phoneNumber}}</td>
-                      <td>{{email}}</td>
-                      <td>{{address}}</td>
-                      {{#if lock_status}}
-                        <td><button class="btn btn-success unlockUser userbutton" id={{_id}}>Unlock</button></td>
-                      {{else}}
-                        <td><button class="btn btn-danger lockUser userbutton" id={{_id}}>Lock</button></td>
-                      {{/if}}
-                    </tr>
+                  <tr>
+                    <td>{{key}} </td>
+                    <td>{{username}}</td>
+                    <td>{{name}}</td>
+                    <td>{{phoneNumber}}</td>
+                    <td>{{email}}</td>
+                    <td>{{address}}</td>
+                    {{#if lock_status}}
+                    <td><button class="btn btn-success unlockUser userbutton" id={{_id}}>Unlock</button></td>
+                    {{else}}
+                    <td><button class="btn btn-danger lockUser userbutton" id={{_id}}>Lock</button></td>
+                    {{/if}}
+                  </tr>
                   {{/each}}
+                  <tr>
+                    <td colspan="6">
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="justify-content: flex-end;">
+                          {{#getPagination}}{{/getPagination}}
+                        </ul>
+                      </nav>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -115,24 +117,13 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
 
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -167,29 +158,29 @@
 <script>
   const lockButton = document.querySelectorAll(".userbutton")
   for (let btn of lockButton) {
-        btn.addEventListener("click", () => {
-          if(btn.classList.contains("lockUser")){
-            $.ajax({
-                url:'/account/lockUser',
-                type: 'POST',  // http method
-                data: { id: btn.id },  // data to submit
-                success: function (data) { // after success your get data
-                    btn.className = "btn btn-success unlockUser"
-                    btn.innerHTML = "Unlock"
-                }   
-            }); 
-          } 
-          else if (btn.classList.contains("unlockUser")){
-            $.ajax({
-              url:'/account/unlockUser',
-              type: 'POST',  // http method
-              data: { id: btn.id },  // data to submit
-              success: function (data) { // after success your get data
-                  btn.className = "btn btn-danger lockUser"
-                  btn.innerHTML = "Lock"
-              }   
-            });
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("lockUser")) {
+        $.ajax({
+          url: '/account/lockUser',
+          type: 'POST',  // http method
+          data: { id: btn.id },  // data to submit
+          success: function (data) { // after success your get data
+            btn.className = "btn btn-success unlockUser"
+            btn.innerHTML = "Unlock"
           }
-        })
+        });
+      }
+      else if (btn.classList.contains("unlockUser")) {
+        $.ajax({
+          url: '/account/unlockUser',
+          type: 'POST',  // http method
+          data: { id: btn.id },  // data to submit
+          success: function (data) { // after success your get data
+            btn.className = "btn btn-danger lockUser"
+            btn.innerHTML = "Lock"
+          }
+        });
+      }
+    })
   }
 </script>
