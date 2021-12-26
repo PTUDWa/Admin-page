@@ -10,8 +10,8 @@ class Course {
     return Product.count();
   }
 
-  getItemByPage(page, perPage) {
-    return Product.find({})
+  getItemByPage(page, perPage, queryObject) {
+    return Product.find(queryObject)
       .skip((page - 1) * perPage)
       .limit(perPage)
       .lean();
