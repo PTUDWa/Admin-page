@@ -1,10 +1,11 @@
-const form = document.getElementById("addProductForm");
+const form = document.getElementById("updateProductForm");
 const thumbnailInput = document.getElementById("thumbnail");
 const imageInput = document.getElementById("image");
 const avatarPreview = document.getElementById("avatarPreview");
 const imagePreview = document.getElementById("imagePreview");
 const nameError = document.getElementById("nameError");
 const priceError = document.getElementById("priceError");
+const stockError = document.getElementById("stockError");
 const summaryError = document.getElementById("summaryError");
 const descriptioError = document.getElementById("descriptionError");
 const categoryError = document.getElementById("categoryError");
@@ -12,8 +13,10 @@ const avatarError = document.getElementById("avatarError");
 const imageError = document.getElementById("imageError");
 const nameInput = document.getElementById("product_name");
 const priceInput = document.getElementById("product_price");
+const stockInput = document.getElementById("product_stock");
 const summaryInput = document.getElementById("product_summary");
 const descriptionInput = document.getElementById("product_description");
+const idInput = document.getElementById("product_id");
 
 const avatar = {};
 const image = [];
@@ -66,8 +69,10 @@ form.addEventListener("submit", (event) => {
   const category = document.querySelectorAll("input[name='category']:checked");
   const name = nameInput.value;
   const price = priceInput.value;
+  const stock = stockInput.value;
   const summary = summaryInput.value;
   const description = descriptionInput.value;
+  const id = idInput.value;
 
   let hasError = false;
 
@@ -84,6 +89,14 @@ form.addEventListener("submit", (event) => {
     hasError = true;
     priceError.innerText = "Required";
   }
+
+  if (stock && stock > 0) {
+    stockError.innerText = "";
+  } else {
+    hasError = true;
+    stockError.innerText = "Required";
+  }
+
   if (summary) {
     summaryError.innerText = "";
   } else {
@@ -123,10 +136,14 @@ form.addEventListener("submit", (event) => {
     category: [...category].map((item) => item.value),
     avatar,
     image,
+    id,
+    stock,
   };
 
+  console.log({ data });
+
   if (!hasError) {
-    fetch("/product/add", {
+    fetch("/product/update", {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },

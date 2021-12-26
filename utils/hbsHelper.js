@@ -40,4 +40,8 @@ module.exports = () => {
 
     return new handlebars.SafeString(result.join(""));
   });
+
+  handlebars.registerHelper("ifIn", (item, list) => {
+    if (list.indexOf(item) !== -1) return new handlebars.SafeString("checked");
+  });
 };

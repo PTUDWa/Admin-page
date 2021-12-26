@@ -39,10 +39,17 @@ class Course {
       .remove()
       .exec();
   }
-  async update({ man, woman, name, price, summary, inStock, description, id }) {
-    var cate = [];
-    if (man == "Man") cate.push(man);
-    if (req.body.woman == "Woman") cate.push(woman);
+  async update({
+    category,
+    name,
+    price,
+    summary,
+    inStock,
+    description,
+    id,
+    thumbnail,
+    image,
+  }) {
     const filter = { _id: mongoose.Types.ObjectId(id) };
     const update = {
       title: name,
@@ -50,7 +57,9 @@ class Course {
       summary: summary,
       inStock: inStock,
       description: description,
-      category: cate,
+      category,
+      thumbnail,
+      image,
     };
     await Product.findOneAndUpdate(filter, update);
   }
