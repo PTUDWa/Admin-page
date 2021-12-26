@@ -1,92 +1,132 @@
-<form class="form-horizontal container" style="max-width: 600px" method="POST">
-    <fieldset>
-    
+<link href="/custom/addProduct.css" rel="stylesheet" />
+
+<form id="updateProductForm" class="form-horizontal container" style="max-width: 600px">
+  <fieldset>
+
     <!-- Form Name -->
     <legend>Cập nhật sản phẩm</legend>
-     <!-- Text input-->
+    <!-- Text input-->
+    <input id="product_id" name="id" placeholder="ID" class="form-control input-md" type="hidden"
+      value="{{product._id}}" readonly>
+
+
+    <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_id">ID</label>  
+      <label class="col-md-4 control-label" for="product_name">Tên sản phẩm</label>
       <div>
-      <input id="product_id" name="id" placeholder="ID" class="form-control input-md" required="" type="text" value = "{{product._id}}" readonly > 
+        <input id="product_name" name="name" placeholder="Tên sản phẩm" class="form-control input-md" type="text"
+          value="{{product.title}}">
+        <div class="col-md-4 control-label errorMessage" id="nameError"></div>
       </div>
     </div>
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_name">Tên sản phẩm</label>  
+      <label class="col-md-4 control-label" for="product_price">Giá sản phẩm</label>
       <div>
-      <input id="product_name" name="name" placeholder="Tên sản phẩm" class="form-control input-md" required="" type="text" value = "{{product.title}}">
-        
-      </div>
-    </div>
-    
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="product_price">Giá sản phẩm</label>  
-      <div>
-      <input id="product_price" name="price" placeholder="Giá sản phẩm" class="form-control input-md" required="" type="number" min="0"  value = "{{product.price}}">
-        
+        <input id="product_price" name="price" placeholder="Giá sản phẩm" class="form-control input-md" type="number"
+          min="0" value="{{product.price}}">
+        <div class="col-md-4 control-label errorMessage" id="priceError"></div>
+
       </div>
     </div>
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_stock">Số lượng trong kho</label>  
+      <label class="col-md-4 control-label" for="product_stock">Số lượng trong kho</label>
       <div>
-      <input id="product_stock" name="inStock" placeholder="Số lượng trong kho" class="form-control input-md" required="" type="number" min="0" value = "{{product.inStock}}">
-        
+        <input id="product_stock" name="inStock" placeholder="Số lượng trong kho" class="form-control input-md"
+          type="number" min="0" value="{{product.inStock}}">
+        <div class="col-md-4 control-label errorMessage" id="stockError"></div>
+
       </div>
     </div>
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_summary">Tóm tắt sản phẩm</label>  
+      <label class="col-md-4 control-label" for="product_summary">Tóm tắt sản phẩm</label>
       <div>
-      <input id="product_summary" name="summary" placeholder="Tóm tắt sản phẩm" class="form-control input-md" required="" type="text" value = "{{product.summary}}">
-        
+        <input id="product_summary" name="summary" placeholder="Tóm tắt sản phẩm" class="form-control input-md"
+          type="text" value="{{product.summary}}">
+        <div class="col-md-4 control-label errorMessage" id="summaryError"></div>
+
       </div>
     </div>
-    
+
     <!-- Select Basic -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="product_description">Mô tả sản phẩm</label>
       <div>
-        <input id="product_description" name="description" placeholder="Mô tả sản phẩm" class="form-control input-md" required="" type="text" value = "{{product.description}}">
+        <input id="product_description" name="description" placeholder="Mô tả sản phẩm" class="form-control input-md"
+          type="text" value="{{product.description}}">
+        <div class="col-md-4 control-label errorMessage" id="descriptionError"></div>
+
       </div>
     </div>
-    
+
     <label class="col-md-4 control-label">Loại sản phẩm</label>
     <div class="form-check">
-        <input class="form-check-input" name = "man" type="checkbox" value= "Man">
-        <label class="form-check-label" >
-          Nam
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" name = "woman" type="checkbox" value= "Woman">
-        <label class="form-check-label">
-          Nữ
-        </label>
-      </div>
-        
-     <!-- File Button --> 
+      <input class="form-check-input" name="category" type="checkbox" value="man" {{#ifIn "man"
+        product.category}}{{/ifIn}} />
+      <label class="form-check-label">
+        Nam
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" name="category" type="checkbox" value="woman" {{#ifIn "woman"
+        product.category}}{{/ifIn}} />
+      <label class="form-check-label">
+        Nữ
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" name="category" type="checkbox" value="bag" {{#ifIn "bag"
+        product.category}}{{/ifIn}} />
+      <label class="form-check-label">
+        Bag
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" name="category" type="checkbox" value="shoes" {{#ifIn "shoes"
+        product.category}}{{/ifIn}} />
+      <label class="form-check-label">
+        Shoes
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" name="category" type="checkbox" value="watch" {{#ifIn "watch"
+        product.category}}{{/ifIn}} />
+      <label class="form-check-label">
+        Watch
+      </label>
+    </div>
+    <div class="col-md-4 control-label errorMessage" id="categoryError"></div>
+
+    <!-- File Button -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="thumbnail">Ảnh đại diện</label>
       <div>
         <input id="thumbnail" name="thumbnail" class="input-file" type="file">
       </div>
+      <img style={display: "none" ;} id="avatarPreview"></img>
+      <div class="col-md-4 control-label errorMessage" id="avatarError"></div>
     </div>
-    <!-- File Button --> 
+    <!-- File Button -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="image">Danh sách ảnh</label>
       <div>
         <input id="image" name="filebutton" class="input-file" type="file">
+        <div class="col-md-4 control-label errorMessage" id="imageError"></div>
+
       </div>
+      <div id="imagePreview"></div>
+
     </div>
-    
+
     <!-- Button -->
     <div class="form-group">
-        <button class="btn btn-primary">Update</button>
+      <button class="btn btn-primary">Update</button>
     </div>
-    
-    </fieldset>
+
+  </fieldset>
 </form>
-    
+
+<script src="/utils/handleUpdateProductForm.js"></script>
