@@ -44,6 +44,9 @@ class Course {
     };
     await User.findOneAndUpdate(filter, update);
   }
+  detailUser(id){
+    return User.findOne({_id: mongoose.Types.ObjectId(id)})
+  }
 }
 
 module.exports = new Course();

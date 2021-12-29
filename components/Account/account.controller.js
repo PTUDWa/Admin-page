@@ -32,6 +32,10 @@ module.exports = {
     }));
     res.render("listUser", { userWithKey });
   },
+  detailUser: async function (req, res, next) {
+    const customer = await authService.detailUser(req.query.id);
+    res.render("detailUser", { customer });
+  },
   lockUser: async function (req, res, next) {
     const id = req.body.id;
     await authService.lockUser(id);
