@@ -56,19 +56,19 @@
                 <tbody>
 
                   {{#each userWithKey}}
-                  <tr>
-                    <td>{{key}} </td>
-                    <td>{{username}}</td>
-                    <td>{{name}}</td>
-                    <td>{{phoneNumber}}</td>
-                    <td>{{email}}</td>
-                    <td>{{address}}</td>
-                    {{#if lock_status}}
-                    <td><button class="btn btn-success unlockUser userbutton" id={{_id}}>Unlock</button></td>
-                    {{else}}
-                    <td><button class="btn btn-danger lockUser userbutton" id={{_id}}>Lock</button></td>
-                    {{/if}}
-                  </tr>
+                    <tr>
+                      <td>{{key}} </td>
+                      <td><a href="/account/detailUser?id={{_id}}" type="submit" class="link-info">{{username}}</a></td>
+                      <td>{{name}}</td>
+                      <td>{{phoneNumber}}</td>
+                      <td>{{email}}</td>
+                      <td>{{address}}</td>
+                      {{#if lock_status}}
+                        <td><button class="btn btn-success unlockUser userbutton" id={{_id}}>Unlock</button></td>
+                      {{else}}
+                        <td><button class="btn btn-danger lockUser userbutton" id={{_id}}>Lock</button></td>
+                      {{/if}}
+                    </tr>
                   {{/each}}
                   <tr>
                     <td colspan="6">
