@@ -10,23 +10,22 @@ class Course {
     return Product.count();
   }
 
-  getItemByPage(page, perPage) {
-    return Product.find({})
+  getItemByPage(page, perPage, queryObject) {
+    return Product.find(queryObject)
       .skip((page - 1) * perPage)
       .limit(perPage)
       .lean();
   }
 
-  add({ man, woman, name, price, summary, description }) {
-    var cate = [];
-    if (man == "Man") cate.push(man);
-    if (woman == "Woman") cate.push(woman);
+  add({ ava, images, category, name, price, summary, description }) {
     var newProduct = new Product({
       title: name,
-      price: price,
-      summary: summary,
-      description: description,
-      category: cate,
+      price,
+      summary,
+      description,
+      category,
+      thumbnail: ava,
+      image: images,
     });
 
     newProduct.save((err, doc) => {
@@ -40,10 +39,17 @@ class Course {
       .remove()
       .exec();
   }
-  async update({ man, woman, name, price, summary, inStock, description, id }) {
-    var cate = [];
-    if (man == "Man") cate.push(man);
-    if (req.body.woman == "Woman") cate.push(woman);
+  async update({
+    category,
+    name,
+    price,
+    summary,
+    inStock,
+    description,
+    id,
+    thumbnail,
+    image,
+  }) {
     const filter = { _id: mongoose.Types.ObjectId(id) };
     const update = {
       title: name,
@@ -51,7 +57,9 @@ class Course {
       summary: summary,
       inStock: inStock,
       description: description,
-      category: cate,
+      category,
+      thumbnail,
+      image,
     };
     await Product.findOneAndUpdate(filter, update);
   }

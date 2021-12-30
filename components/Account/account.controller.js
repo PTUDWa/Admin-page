@@ -1,4 +1,7 @@
 const authService = require("../Auth/auth.service");
+const pageUtils = require("../../utils/page");
+const PAGE = require("../../constants/page");
+
 module.exports = {
   listAdmin: async function (req, res, next) {
     const admins = await authService.showAdmin();
@@ -8,7 +11,7 @@ module.exports = {
     }));
     res.render("listAdmin", { adminWithKey });
   },
-  
+
   createAdminForm: function (req, res, next) {
     res.render("createAdmin", { title: "Create admin" });
   },
@@ -24,14 +27,26 @@ module.exports = {
     const admin = await authService.findByUsername(req.user.username);
     res.render("detailAdmin", { admin });
   },
+
   listUser: async function (req, res, next) {
-    const users = await authService.showUser();
+    const page = req.body.page || 1;
+    const total = await authService.countUser();
+    const pagination = pageUtils.getPagination(page, total);
+    const users = await authService.getUserByPage(page, PAGE.perPage);
+
     const userWithKey = users.map((item, index) => ({
       ...item,
       key: index + 1,
     }));
-    res.render("listUser", { userWithKey });
+
+    res.render("listUser", {
+      userWithKey,
+      pagination,
+      curPage: page,
+      url: "/account/listUser",
+    });
   },
+
   detailUser: async function (req, res, next) {
     const customer = await authService.detailUser(req.query.id);
     res.render("detailUser", { customer });

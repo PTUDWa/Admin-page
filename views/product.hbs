@@ -1,6 +1,8 @@
 <!-- ============================================================== -->
 <!-- Preloader - style you can find in spinners.css -->
 <!-- ============================================================== -->
+<link href="/custom/listProduct.css" rel="stylesheet" />
+
 <div class="preloader">
   <div class="lds-ripple">
     <div class="lds-pos"></div>
@@ -44,7 +46,29 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="white-box">
-            <h3 class="box-title">Danh sách sản phẩm</h3>
+            <div class="product-heading">
+              <h3 class="box-title">Danh sách sản phẩm : {{filter}}</h3>
+              <div class="filter">
+                <a href="/product" class="filter-item">
+                  All
+                </a>
+                <a href="/product?category=man" class="filter-item">
+                  Man
+                </a>
+                <a href="/product?category=woman" class="filter-item">
+                  Woman
+                </a>
+                <a href="/product?category=bag" class="filter-item">
+                  Bag
+                </a>
+                <a href="/product?category=shoes" class="filter-item">
+                  Shoes
+                </a>
+                <a href="/product?category=watch" class="filter-item">
+                  Watch
+                </a>
+              </div>
+            </div>
             <div class="table-responsive">
               <table class="table text-nowrap" style="text-align: center">
                 <thead>
@@ -171,21 +195,21 @@
           document.querySelector(".saveModelBtn"); const deleteTrigger =
             document.getElementById("deleteTrigger"); let deleteId = null; for (let btn of
       deleteBtn) {
-        btn.addEventListener("click", () => {
-          $('#exampleModal').modal('show') deleteId = $(btn).data("id");
-        })
+      btn.addEventListener("click", () => {
+        $('#exampleModal').modal('show') deleteId = $(btn).data("id");
+      })
     }
     closeModelBtn.addEventListener("click", () => {
       deleteId = null;
       $('#exampleModal').modal('hide')
     }) saveModelBtn.addEventListener("click", ()
       => {
-        if (deleteId) {
-          const deleteProductForm =
-            document.getElementById("deleteProductForm") const deleteProductId =
-              document.getElementById("deleteProductId") deleteProductId.value = deleteId;
-          deleteProductForm.submit() deleteId = null;
-        }
+      if (deleteId) {
+        const deleteProductForm =
+          document.getElementById("deleteProductForm") const deleteProductId =
+            document.getElementById("deleteProductId") deleteProductId.value = deleteId;
+        deleteProductForm.submit() deleteId = null;
+      }
     })
   })
 </script>

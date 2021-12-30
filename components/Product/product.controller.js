@@ -2,20 +2,36 @@ const productService = require("./product.service");
 const PAGE = require("../../constants/page");
 const pageUtils = require("../../utils/page");
 const mongoose = require("mongoose");
+const cloud = require("../../cloud/index");
 
 module.exports = {
   index: async (req, res, next) => {
     const page = parseInt(req.query.page) || 1;
     const total = await productService.count();
     const pagination = pageUtils.getPagination(page, total);
+    const queryObject = {};
 
-    const products = await productService.getItemByPage(page, PAGE.perPage);
+    if (req.query.category) {
+      queryObject.category = req.query.category;
+    }
+
+    const products = await productService.getItemByPage(
+      page,
+      PAGE.perPage,
+      queryObject
+    );
     const productsWithKey = products.map((product, index) => ({
       ...product,
       key: pagination.keys[index],
     }));
 
-    res.render("product", { productsWithKey, pagination, curPage: page });
+    res.render("product", {
+      productsWithKey,
+      pagination,
+      curPage: page,
+      url: "/product",
+      filter: req.query.category,
+    });
   },
 
   add: (req, res, next) => {
@@ -23,9 +39,30 @@ module.exports = {
   },
 
   addExec: async (req, res, next) => {
-    const { man, woman, name, price, summary, description } = req.body;
-    await productService.add({ man, woman, name, price, summary, description });
-    res.redirect("/product");
+    const { category, avatar, image, name, price, summary, description } =
+      req.body;
+
+    const ava = (await cloud.uploader.upload(avatar.src)).url;
+    const images = [];
+
+    for (let img of image) {
+      const reuslt = await cloud.uploader.upload(img.src);
+      images.push(reuslt.url);
+    }
+
+    await productService.add({
+      ava,
+      images,
+      category,
+      name,
+      price,
+      summary,
+      description,
+    });
+
+    console.log("Done");
+
+    res.send("success");
   },
   delete: async (req, res, next) => {
     const id = req.query.id;
@@ -39,20 +76,38 @@ module.exports = {
 
     res.render("updateProduct", { product });
   },
-  updateExec: (req, res, next) => {
-    const { man, woman, name, price, summary, inStock, description } = req.body;
-    const { id } = req.query;
-    productService.update({
-      man,
-      woman,
+  updateExec: async (req, res, next) => {
+    const {
+      category,
       name,
       price,
       summary,
-      inStock,
+      stock,
       description,
       id,
+      avatar,
+      image,
+    } = req.body;
+
+    const ava = (await cloud.uploader.upload(avatar.src)).url;
+    const images = [];
+
+    for (let img of image) {
+      const reuslt = await cloud.uploader.upload(img.src);
+      images.push(reuslt.url);
+    }
+
+    productService.update({
+      category,
+      name,
+      price,
+      summary,
+      inStock: stock,
+      description,
+      thumbnail: ava,
+      image: images,
+      id,
     });
-    res.redirect("/product");
-    req.flash("success", "User added successfully!");
+    res.send("done");
   },
 };
