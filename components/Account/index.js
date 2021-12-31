@@ -9,6 +9,10 @@ const accountController = require("./account.controller");
 router.get("/createAdmin", accountController.createAdminForm);
 router.get("/listAdmin", accountController.listAdmin);
 router.get("/detail", accountController.detail);
+router.get("/listUser", accountController.listUser);
+router.get("/detailUser", accountController.detailUser)
 router.post("/createAdmin", accountController.createAdmin);
+router.post("/lockUser", accountController.lockUser);
+router.post("/unlockUser", accountController.unlockUser);
 
 module.exports = router;
