@@ -10,6 +10,7 @@
       value="{{product._id}}" readonly>
 
 
+    <label class="col-md-4 control-label" for="product_name" id="message-error" style="color: red;"></label>
     <!-- Text input-->
     <div class="form-group">
       <label class="col-md-4 control-label" for="product_name">Tên sản phẩm</label>
@@ -123,7 +124,11 @@
 
     <!-- Button -->
     <div class="form-group">
-      <button class="btn btn-primary">Update</button>
+      <button class="btn btn-primary" style="display: flex; align-items: center">
+        <div class="spinner-border" role="status" style="margin-right: 24px;">
+          <span class="sr-only">Loading...</span>
+        </div>Update
+      </button>
     </div>
 
   </fieldset>

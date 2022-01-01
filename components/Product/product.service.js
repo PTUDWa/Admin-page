@@ -17,6 +17,12 @@ class Course {
       .lean();
   }
 
+  getItemByName(name) {
+    return Product.findOne({
+      title: name,
+    }).lean();
+  }
+
   add({ ava, images, category, name, price, summary, description }) {
     var newProduct = new Product({
       title: name,

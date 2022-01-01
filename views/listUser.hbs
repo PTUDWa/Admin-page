@@ -45,10 +45,8 @@
                   <tr>
                     <th class="border-top-0 text-center">Index</th>
                     <th class="border-top-0 text-center">Username</th>
-                    <th class="border-top-0 text-center">Name</th>
                     <th class="border-top-0 text-center">Phone number</th>
                     <th class="border-top-0 text-center">Email</th>
-                    <th class="border-top-0 text-center">Address</th>
                     <th class="border-top-0 text-center">Action</th>
                     {{! <th class="border-top-0 text-center">Hành động</th> }}
                   </tr>
@@ -59,10 +57,8 @@
                     <tr>
                       <td>{{key}} </td>
                       <td><a href="/account/detailUser?id={{_id}}" type="submit" class="link-info">{{username}}</a></td>
-                      <td>{{name}}</td>
                       <td>{{phoneNumber}}</td>
                       <td>{{email}}</td>
-                      <td>{{address}}</td>
                       {{#if lock_status}}
                         <td><button class="btn btn-success unlockUser userbutton" id={{_id}}>Unlock</button></td>
                       {{else}}

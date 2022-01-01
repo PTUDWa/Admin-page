@@ -7,6 +7,16 @@ class Course {
   findByUsername(username) {
     return Admin.findOne({ username: username }).lean();
   }
+  async updateAdminInformation({username, name, phoneNumber,email, address}) {
+    const filter = { username: username};
+    const update = {
+      name: name,
+      phoneNumber: phoneNumber,
+      email: email,
+      address: address,
+    };
+    await Admin.findOneAndUpdate(filter, update);
+  }
   validPassword(password, user) {
     return bcrypt.compare(password, user.password);
   }
