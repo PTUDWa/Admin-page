@@ -8,6 +8,7 @@
     <legend>Thêm sản phẩm</legend>
 
     <!-- Text input-->
+    <label class="col-md-4 control-label" id="message-error" for="product_name" style="color: red;"></label>
     <div class="form-group">
       <label class="col-md-4 control-label" for="product_name">Tên sản phẩm</label>
       <div>
@@ -101,7 +102,11 @@
 
     <!-- Button -->
     <div class="form-group">
-      <button class="btn btn-primary">Add</button>
+      <button class="btn btn-primary" style="display: flex; align-items: center">
+        <div class="spinner-border" role="status" style="margin-right: 24px;">
+          <span class="sr-only">Loading...</span>
+        </div>Update
+      </button>
     </div>
 
   </fieldset>

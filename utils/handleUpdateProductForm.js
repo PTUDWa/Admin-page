@@ -17,6 +17,9 @@ const stockInput = document.getElementById("product_stock");
 const summaryInput = document.getElementById("product_summary");
 const descriptionInput = document.getElementById("product_description");
 const idInput = document.getElementById("product_id");
+const messageError = document.getElementById("message-error");
+const spinner = document.querySelector(".spinner-border");
+spinner.style.display = "none";
 
 const avatar = {};
 const image = [];
@@ -140,15 +143,23 @@ form.addEventListener("submit", (event) => {
     stock,
   };
 
-  console.log({ data });
-
   if (!hasError) {
+    spinner.style.display = "block";
     fetch("/product/update", {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
       method: "POST",
       body: JSON.stringify(data),
-    }).then((res) => (window.location = "/product"));
+    })
+      .then((res) => {
+        if (res.status === 400) return res.json();
+        else window.location = "/product";
+      })
+      .then((data) => {
+        if (data) messageError.innerText = data.message;
+        spinner.style.display = "none";
+      })
+      .catch((err) => console.log({ err }));
   }
 });
