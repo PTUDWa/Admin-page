@@ -78,6 +78,8 @@
                     <th class="border-top-0 text-center">Phân loại</th>
                     <th class="border-top-0 text-center">Giá</th>
                     <th class="border-top-0 text-center">Đã bán</th>
+                    <th class="border-top-0 text-center">Trong kho</th>
+                    <th class="border-top-0 text-center">Lượt xem</th>
                     <th class="border-top-0 text-center">Hành động</th>
                   </tr>
                 </thead>
@@ -90,6 +92,8 @@
                     <td>{{category}}</td>
                     <td>{{price}}</td>
                     <td>{{sold}}</td>
+                    <td>{{inStock}}</td>
+                    <td>{{view}}</td>
 
                     <td>
 
@@ -103,7 +107,7 @@
                   {{/each}}
 
                   <tr>
-                    <td colspan="6">
+                    <td colspan="7">
                       <nav aria-label="Page navigation example">
                         <ul class="pagination" style="justify-content: flex-end;">
                           {{#getPagination}}{{/getPagination}}

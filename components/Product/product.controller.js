@@ -42,6 +42,13 @@ module.exports = {
     const { category, avatar, image, name, price, summary, description } =
       req.body;
 
+    const product = await productService.getItemByName(name);
+
+    if (product) {
+      res.status(400).send({ message: "Product is already exists." });
+      return;
+    }
+
     const ava = (await cloud.uploader.upload(avatar.src)).url;
     const images = [];
 
@@ -60,9 +67,7 @@ module.exports = {
       description,
     });
 
-    console.log("Done");
-
-    res.send("success");
+    res.status(200).send("Done");
   },
   delete: async (req, res, next) => {
     const id = req.query.id;
@@ -89,6 +94,13 @@ module.exports = {
       image,
     } = req.body;
 
+    const product = await productService.getItemByName(name);
+
+    if (product) {
+      res.status(400).send({ message: "Product is already exists." });
+      return;
+    }
+
     const ava = (await cloud.uploader.upload(avatar.src)).url;
     const images = [];
 
@@ -97,7 +109,7 @@ module.exports = {
       images.push(reuslt.url);
     }
 
-    productService.update({
+    await productService.update({
       category,
       name,
       price,
@@ -108,6 +120,7 @@ module.exports = {
       image: images,
       id,
     });
-    res.send("done");
+
+    res.status(200).send("Done");
   },
 };
