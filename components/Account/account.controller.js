@@ -11,7 +11,16 @@ module.exports = {
     }));
     res.render("listAdmin", { adminWithKey });
   },
-
+  updateInformationForm: async function (req, res, next) {
+    const admin = await authService.findByUsername(req.user.username);
+    res.render("updateAdminInformation", { admin });
+  },
+  updateAdminInformation: async function (req, res, next) {
+    const { username, name, phoneNumber, email, address } = req.body;
+    await authService.updateAdminInformation({ username, name, phoneNumber,email,address });
+    req.user.name = name;
+    res.redirect("/account/detail")
+  },
   createAdminForm: function (req, res, next) {
     res.render("createAdmin", { title: "Create admin" });
   },
