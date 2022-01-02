@@ -23,6 +23,10 @@ class Course {
     }).lean();
   }
 
+  getTop10ProductsBySold() {
+    return Product.find({}).sort({ sold: "desc" }).limit(10).lean();
+  }
+
   add({ ava, images, category, name, price, summary, description }) {
     var newProduct = new Product({
       title: name,
