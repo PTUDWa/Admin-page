@@ -22,14 +22,20 @@ module.exports = {
     res.redirect("/account/detail")
   },
   createAdminForm: function (req, res, next) {
-    res.render("createAdmin", { title: "Create admin" });
+    const wrong = req.query["wrong"] !== undefined;
+    res.render("createAdmin", { title: "Create admin" , wrong});
   },
 
   createAdmin: async function (req, res, next) {
     const { username, password, name } = req.body;
-
-    await authService.createAdmin({ username, password, name });
-    res.redirect("/");
+    const exist = await authService.adminExist(username);
+    if(!exist){
+      await authService.createAdmin({ username, password, name });
+      res.redirect("/account/listAdmin");
+    }
+    else {
+      res.redirect("/account/createAdmin?wrong")
+    }
   },
 
   detail: async function (req, res, next) {
