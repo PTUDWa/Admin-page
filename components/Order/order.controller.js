@@ -2,6 +2,7 @@ const orderService = require("./order.service");
 const PAGE = require("../../constants/page");
 const pageUtils = require("../../utils/page");
 const mongoose = require("mongoose");
+const { setStatus } = require("./order.service");
 
 module.exports = {
   index: async (req, res, next) => {
@@ -35,4 +36,21 @@ module.exports = {
       url: "/order",
     });
   },
+  showDetail: async (req, res, next) => {
+    const order = await orderService.getOrder(req.params.id);
+    
+    for (var i = 0; i < order.items.length; i++) { 
+      order.items[i].total = order.items[i].productID.price * order.items[i].qty;
+    }
+    
+    const totalPrice = order.items.reduce(
+      (a, b) => a + b.productID.price * b.qty,
+      0
+    );
+    
+    res.render("orderDetail.hbs", {order, totalPrice});
+  },
+  setStatus: async (req, res, next) => {
+    await orderService.setStatus(req.body.id, req.body.status);
+  }
 };

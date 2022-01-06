@@ -44,4 +44,7 @@ module.exports = () => {
   handlebars.registerHelper("ifIn", (item, list) => {
     if (list.indexOf(item) !== -1) return new handlebars.SafeString("checked");
   });
+  handlebars.registerHelper("ifEqual", (item1, item2) => {
+    if (item1 == item2) return new handlebars.SafeString("checked");
+  });
 };

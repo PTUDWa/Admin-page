@@ -7,6 +7,10 @@ class Course {
   findByUsername(username) {
     return Admin.findOne({ username: username }).lean();
   }
+  async adminExist(username) {
+    const exist = await Admin.exists({ username: username });
+    return exist;
+  }
   async updateAdminInformation({username, name, phoneNumber,email, address}) {
     const filter = { username: username};
     const update = {
