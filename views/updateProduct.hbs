@@ -4,7 +4,7 @@
   <fieldset>
 
     <!-- Form Name -->
-    <legend>Cập nhật sản phẩm</legend>
+    <legend>Update product</legend>
     <!-- Text input-->
     <input id="product_id" name="id" placeholder="ID" class="form-control input-md" type="hidden"
       value="{{product._id}}" readonly>
@@ -13,9 +13,9 @@
     <label class="col-md-4 control-label" for="product_name" id="message-error" style="color: red;"></label>
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_name">Tên sản phẩm</label>
+      <label class="col-md-4 control-label" for="product_name">Product name</label>
       <div>
-        <input id="product_name" name="name" placeholder="Tên sản phẩm" class="form-control input-md" type="text"
+        <input id="product_name" name="name" placeholder="Name" class="form-control input-md" type="text"
           value="{{product.title}}">
         <div class="col-md-4 control-label errorMessage" id="nameError"></div>
       </div>
@@ -23,9 +23,9 @@
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_price">Giá sản phẩm</label>
+      <label class="col-md-4 control-label" for="product_price">Product price</label>
       <div>
-        <input id="product_price" name="price" placeholder="Giá sản phẩm" class="form-control input-md" type="number"
+        <input id="product_price" name="price" placeholder="Price" class="form-control input-md" type="number"
           min="0" value="{{product.price}}">
         <div class="col-md-4 control-label errorMessage" id="priceError"></div>
 
@@ -33,9 +33,9 @@
     </div>
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_stock">Số lượng trong kho</label>
+      <label class="col-md-4 control-label" for="product_stock">In stock</label>
       <div>
-        <input id="product_stock" name="inStock" placeholder="Số lượng trong kho" class="form-control input-md"
+        <input id="product_stock" name="inStock" placeholder="In stock" class="form-control input-md"
           type="number" min="0" value="{{product.inStock}}">
         <div class="col-md-4 control-label errorMessage" id="stockError"></div>
 
@@ -43,9 +43,9 @@
     </div>
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_summary">Tóm tắt sản phẩm</label>
+      <label class="col-md-4 control-label" for="product_summary">Product summary</label>
       <div>
-        <input id="product_summary" name="summary" placeholder="Tóm tắt sản phẩm" class="form-control input-md"
+        <input id="product_summary" name="summary" placeholder="Summary" class="form-control input-md"
           type="text" value="{{product.summary}}">
         <div class="col-md-4 control-label errorMessage" id="summaryError"></div>
 
@@ -54,28 +54,28 @@
 
     <!-- Select Basic -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="product_description">Mô tả sản phẩm</label>
+      <label class="col-md-4 control-label" for="product_description">Product description</label>
       <div>
-        <input id="product_description" name="description" placeholder="Mô tả sản phẩm" class="form-control input-md"
+        <input id="product_description" name="description" placeholder="Description" class="form-control input-md"
           type="text" value="{{product.description}}">
         <div class="col-md-4 control-label errorMessage" id="descriptionError"></div>
 
       </div>
     </div>
 
-    <label class="col-md-4 control-label">Loại sản phẩm</label>
+    <label class="col-md-4 control-label">Category</label>
     <div class="form-check">
       <input class="form-check-input" name="category" type="checkbox" value="man" {{#ifIn "man"
         product.category}}{{/ifIn}} />
       <label class="form-check-label">
-        Nam
+        Man
       </label>
     </div>
     <div class="form-check">
       <input class="form-check-input" name="category" type="checkbox" value="woman" {{#ifIn "woman"
         product.category}}{{/ifIn}} />
       <label class="form-check-label">
-        Nữ
+        Woman
       </label>
     </div>
     <div class="form-check">
@@ -103,7 +103,7 @@
 
     <!-- File Button -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="thumbnail">Ảnh đại diện</label>
+      <label class="col-md-4 control-label" for="thumbnail">Thumbnail</label>
       <div>
         <input id="thumbnail" name="thumbnail" class="input-file" type="file">
       </div>
@@ -112,7 +112,7 @@
     </div>
     <!-- File Button -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="image">Danh sách ảnh</label>
+      <label class="col-md-4 control-label" for="image">Images list</label>
       <div>
         <input id="image" name="filebutton" class="input-file" type="file">
         <div class="col-md-4 control-label errorMessage" id="imageError"></div>
