@@ -18,17 +18,24 @@ module.exports = {
     );
 
     const ordersWithKey = orders.map((order, index) => {
-      const price = order.items.reduce(
-        (a, b) => a + b.productID.price * b.qty,
-        0
-      );
+      const price = order.items.reduce((a, b) => {
+        if (b.productID) {
+          return a + b.productID.price * b.qty;
+        } else {
+          return a;
+        }
+      }, 0);
+
+      const items = order.items.filter((item) => item.productID);
 
       return {
         ...order,
         price,
+        items,
         key: pagination.keys[index],
       };
     });
+
     res.render("order.hbs", {
       ordersWithKey,
       pagination,
@@ -38,19 +45,20 @@ module.exports = {
   },
   showDetail: async (req, res, next) => {
     const order = await orderService.getOrder(req.params.id);
-    
-    for (var i = 0; i < order.items.length; i++) { 
-      order.items[i].total = order.items[i].productID.price * order.items[i].qty;
+
+    for (var i = 0; i < order.items.length; i++) {
+      order.items[i].total =
+        order.items[i].productID.price * order.items[i].qty;
     }
-    
+
     const totalPrice = order.items.reduce(
       (a, b) => a + b.productID.price * b.qty,
       0
     );
-    
-    res.render("orderDetail.hbs", {order, totalPrice});
+
+    res.render("orderDetail.hbs", { order, totalPrice });
   },
   setStatus: async (req, res, next) => {
     await orderService.setStatus(req.body.id, req.body.status);
-  }
+  },
 };
