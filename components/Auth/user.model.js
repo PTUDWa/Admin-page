@@ -16,10 +16,6 @@ const userSchema = new Schema({
         require: true,
     },
 
-    isAdmin:{
-        type: Boolean,
-        default: false,
-    },
 
     avatar: {
         type: String,

@@ -18,7 +18,7 @@ form.addEventListener("submit", (event) => {
   const phoneNumber = phoneInput.value;
   const email = emailInput.value;
   const address = addressInput.value;
-
+  const phoneno = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
   let hasError = false;
 
@@ -41,6 +41,12 @@ form.addEventListener("submit", (event) => {
   } else {
     hasError = true;
     phoneNumberError.innerText = "Required";
+  }
+  if (phoneNumber.match(phoneno)){
+    phoneNumberError.innerText = "";
+  } else {
+    hasError = true;
+    phoneNumberError.innerText = "This phone number is not valid";
   }
   if (email) {
     emailError.innerText = "";
