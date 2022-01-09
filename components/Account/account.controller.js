@@ -17,24 +17,29 @@ module.exports = {
   },
   updateAdminInformation: async function (req, res, next) {
     const { username, name, phoneNumber, email, address } = req.body;
-    await authService.updateAdminInformation({ username, name, phoneNumber,email,address });
+    await authService.updateAdminInformation({
+      username,
+      name,
+      phoneNumber,
+      email,
+      address,
+    });
     req.user.name = name;
-    res.redirect("/account/detail")
+    res.redirect("/account/detail");
   },
   createAdminForm: function (req, res, next) {
     const wrong = req.query["wrong"] !== undefined;
-    res.render("createAdmin", { title: "Create admin" , wrong});
+    res.render("createAdmin", { title: "Create admin", wrong });
   },
 
   createAdmin: async function (req, res, next) {
     const { username, password, name } = req.body;
     const exist = await authService.adminExist(username);
-    if(!exist){
+    if (!exist) {
       await authService.createAdmin({ username, password, name });
       res.redirect("/account/listAdmin");
-    }
-    else {
-      res.redirect("/account/createAdmin?wrong")
+    } else {
+      res.redirect("/account/createAdmin?wrong");
     }
   },
 
@@ -44,14 +49,14 @@ module.exports = {
   },
 
   listUser: async function (req, res, next) {
-    const page = req.body.page || 1;
+    const page = req.query.page || 1;
     const total = await authService.countUser();
     const pagination = pageUtils.getPagination(page, total);
     const users = await authService.getUserByPage(page, PAGE.perPage);
 
     const userWithKey = users.map((item, index) => ({
       ...item,
-      key: index + 1,
+      key: pagination.keys[index],
     }));
 
     res.render("listUser", {
