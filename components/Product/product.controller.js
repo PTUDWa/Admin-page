@@ -96,7 +96,7 @@ module.exports = {
 
     const product = await productService.getItemByName(name);
 
-    if (product) {
+    if (product && product._id !== id) {
       res.status(400).send({ message: "Product is already exists." });
       return;
     }
