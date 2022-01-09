@@ -1,8 +1,6 @@
 <!-- ============================================================== -->
 <!-- Preloader - style you can find in spinners.css -->
 <!-- ============================================================== -->
-<link href="/custom/listProduct.css" rel="stylesheet" />
-
 <div class="preloader">
   <div class="lds-ripple">
     <div class="lds-pos"></div>
@@ -21,14 +19,7 @@
     <div class="page-breadcrumb bg-white">
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-          <h4 class="page-title">Product management</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-          <div class="d-md-flex justify-content-end">
-            <a href="/product/add"
-              class="btn btn-danger d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add
-              new product</a>
-          </div>
+          <h4 class="page-title">User list</h4>
         </div>
       </div>
       <!-- /.col-lg-12 -->
@@ -43,71 +34,40 @@
       <!-- ============================================================== -->
       <!-- Start Page Content -->
       <!-- ============================================================== -->
+
       <div class="row">
         <div class="col-sm-12">
           <div class="white-box">
-            <div class="product-heading">
-              <h3 class="box-title">Products list : {{filter}}</h3>
-              <div class="filter">
-                <a href="/product" class="filter-item">
-                  All
-                </a>
-                <a href="/product?category=man" class="filter-item">
-                  Man
-                </a>
-                <a href="/product?category=woman" class="filter-item">
-                  Woman
-                </a>
-                <a href="/product?category=bag" class="filter-item">
-                  Bag
-                </a>
-                <a href="/product?category=shoes" class="filter-item">
-                  Shoes
-                </a>
-                <a href="/product?category=watch" class="filter-item">
-                  Watch
-                </a>
-              </div>
-            </div>
+            <h3 class="box-title">List of user</h3>
             <div class="table-responsive">
               <table class="table text-nowrap" style="text-align: center">
                 <thead>
                   <tr>
                     <th class="border-top-0 text-center">Index</th>
-                    <th class="border-top-0 text-center">Name</th>
-                    <th class="border-top-0 text-center">Category</th>
-                    <th class="border-top-0 text-center">Price</th>
-                    <th class="border-top-0 text-center">Sold</th>
-                    <th class="border-top-0 text-center">In Stock</th>
-                    <th class="border-top-0 text-center">View</th>
+                    <th class="border-top-0 text-center">Username</th>
+                    <th class="border-top-0 text-center">Phone number</th>
+                    <th class="border-top-0 text-center">Email</th>
                     <th class="border-top-0 text-center">Action</th>
+                    {{! <th class="border-top-0 text-center">Hành động</th> }}
                   </tr>
                 </thead>
                 <tbody>
 
-                  {{#each productsWithKey}}
-                  <tr>
-                    <td>{{key}} </td>
-                    <td>{{title}}</td>
-                    <td>{{category}}</td>
-                    <td>{{price}}</td>
-                    <td>{{sold}}</td>
-                    <td>{{inStock}}</td>
-                    <td>{{view}}</td>
-
-                    <td>
-
-                      <a href="/product/update?id={{_id}}" type="submit" class="btn btn-success">Update</a>
-
-                      <button class="btn btn-danger deleteBtn" data-id={{_id}}>Delete</button>
-
-                    </td>
-
-                  </tr>
+                  {{#each userWithKey}}
+                    <tr>
+                      <td>{{key}} </td>
+                      <td><a href="/account/detailUser?id={{_id}}" type="submit" class="link-info">{{username}}</a></td>
+                      <td>{{phoneNumber}}</td>
+                      <td>{{email}}</td>
+                      {{#if lock_status}}
+                        <td><button class="btn btn-success unlockUser userbutton" id={{_id}}>Unlock</button></td>
+                      {{else}}
+                        <td><button class="btn btn-danger lockUser userbutton" id={{_id}}>Lock</button></td>
+                      {{/if}}
+                    </tr>
                   {{/each}}
-
                   <tr>
-                    <td colspan="7">
+                    <td colspan="6">
                       <nav aria-label="Page navigation example">
                         <ul class="pagination" style="justify-content: flex-end;">
                           {{#getPagination}}{{/getPagination}}
@@ -158,17 +118,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeIcon">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Do you want to delete this product?
+        ...
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary closeModelBtn">Cancel</button>
-        <button class="btn btn-danger saveModelBtn">Delete</button>
+        <button class="btn btn-secondary closeModelBtn">Close</button>
+        <button class="btn btn-primary saveModelBtn">Save changes</button>
       </div>
     </div>
   </div>
@@ -178,7 +138,6 @@
   <input id="deleteProductId" name="id" value="" />
 </form>
 
-<script src="/utils/handleDeleteProduct.js"></script>
 <script src="/plugins/modal/bootstrap.min.js"></script>
 <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
@@ -191,3 +150,33 @@
 <!--Custom JavaScript -->
 
 <script src="/js/custom.js"></script>
+
+<script>
+  const lockButton = document.querySelectorAll(".userbutton")
+  for (let btn of lockButton) {
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("lockUser")) {
+        $.ajax({
+          url: '/account/lockUser',
+          type: 'POST',  // http method
+          data: { id: btn.id },  // data to submit
+          success: function (data) { // after success your get data
+            btn.className = "btn btn-success unlockUser"
+            btn.innerHTML = "Unlock"
+          }
+        });
+      }
+      else if (btn.classList.contains("unlockUser")) {
+        $.ajax({
+          url: '/account/unlockUser',
+          type: 'POST',  // http method
+          data: { id: btn.id },  // data to submit
+          success: function (data) { // after success your get data
+            btn.className = "btn btn-danger lockUser"
+            btn.innerHTML = "Lock"
+          }
+        });
+      }
+    })
+  }
+</script>

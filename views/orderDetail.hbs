@@ -1,0 +1,197 @@
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+  <div class="lds-ripple">
+    <div class="lds-pos"></div>
+    <div class="lds-pos"></div>
+  </div>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div
+  id="main-wrapper"
+  data-layout="vertical"
+  data-navbarbg="skin5"
+  data-sidebartype="full"
+  data-sidebar-position="absolute"
+  data-header-position="absolute"
+  data-boxed-layout="full"
+>
+<div class="page-wrapper">
+     <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+          <h4 class="page-title">Order detail</h4>
+        </div>
+      </div>  
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+        <div class="page-content page-container" id="page-content">
+            <a href="/order" type="button" class="btn btn-primary">&laquo; BACK</a>
+            <div class="padding">
+                <div class="row container d-flex justify-content-center">
+                    <div class="col-xl-10 col-md-12">
+                        <div class="card user-card-full">
+                            <div class="row m-l-0 m-r-0">
+                                
+                                <div>
+                                    <div class="card-block">
+                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Customer</p>
+                                                <h6 class="text-muted f-w-400">{{order.customerId.username}}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Phone</p>
+                                                <h6 class="text-muted f-w-400">{{order.phone}}</h6>
+                                            </div>
+                                        </div>
+                                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Email</p>
+                                                <h6 class="text-muted f-w-400">{{order.customerId.email}}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Alternative phone number</p>
+                                                <h6 class="text-muted f-w-400">{{order.customerId.phoneNumber}}</h6>
+                                            </div>
+                                        </div>
+                                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Address</p>
+                                                <h6 class="text-muted f-w-400">{{order.address}}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Payment Type</p>
+                                                <h6 class="text-muted f-w-400">{{order.paymentType}}</h6>
+                                            </div>
+                                        </div>
+                                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Create at</p>
+                                                <h6 class="text-muted f-w-400">{{order.createdAt}}</h6>
+                                            </div>
+                                            
+                                        </div>
+                                            <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">Status</p>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="ordered" value="ordered" {{#ifEqual "ordered" order.status}}{{/ifEqual}}>
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Ordered
+                                                    </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="order_confirmed" value="order_confirmed" {{#ifEqual "order_confirmed" order.status}}{{/ifEqual}}>
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Order confirmed  
+                                                    </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="picked_by_courier" value="picked_by_courier" {{#ifEqual "picked_by_courier" order.status}}{{/ifEqual}}>
+                                                    <label class="form-check-label" for="exampleRadios3">
+                                                        Pick by courier
+                                                    </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="on_the_way" value="on_the_way" {{#ifEqual "on_the_way" order.status}}{{/ifEqual}}>
+                                                    <label class="form-check-label" for="exampleRadios3">
+                                                        On the way
+                                                    </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="ready_for_pickup" value="ready_for_pickup" {{#ifEqual "ready_for_pickup" order.status}}{{/ifEqual}}>
+                                                    <label class="form-check-label" for="exampleRadios3">
+                                                        Ready for pickup
+                                                    </label>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+                                            <h4 class="page-title">Items list</h4>
+                                            <div class="table-responsive">
+                                            <table class="table text-nowrap" style="text-align: center">
+                                                <thead>
+                                                <tr>
+                                                    <th class="border-top-0 text-center"></th>
+                                                    <th class="border-top-0 text-center">Product</th>
+                                                    <th class="border-top-0 text-center">Quantity</th>
+                                                    <th class="border-top-0 text-center">Price per item</th>
+                                                    <th class="border-top-0 text-center">Price</th>
+                                                    
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                {{#each order.items}}
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{productID.title}} </td>
+                                                    <td>{{qty}}</td>
+                                                    <td>{{productID.price}}</td>
+                                                    <td>{{total}}</td>
+                                                    
+
+                                                </tr>
+                                                {{/each}}
+                                                <td class="border-top-0 text-center font-weight-bold">Total</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>      
+                                                <td>{{totalPrice}}</td>
+                                                </tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group" style="display: none;">
+      <label class="col-md-4 control-label" for="orderID" >Username</label>
+      <div>
+        <input id="orderID" name="orderID" placeholder="Username" class="form-control input-md" type="text"
+          value="{{order._id}}" readonly>
+        <div class="col-md-4 control-label errorMessage" id="usernameError"></div>
+      </div>
+    </div>
+<script src="/plugins/modal/bootstrap.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="/js/app-style-switcher.js"></script>
+<!--Wave Effects -->
+<script src="/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+
+<script src="/js/custom.js"></script>
+<script src="../utils/handleOrder.js"
